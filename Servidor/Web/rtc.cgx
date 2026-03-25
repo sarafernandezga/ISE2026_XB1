@@ -1,0 +1,9 @@
+t <form>
+t <text><id>rtc_time</id><value>
+c h 1 %s
+t </value></text>
+t <text><id>rtc_date</id><value>
+c h 2 %s
+t </value></text>
+t </form>
+.

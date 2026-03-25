@@ -13,7 +13,6 @@
 #include "pot.h"
 #include "rtc.h"
 #include "sntp.h"
-#include "BAJOCONSUMO.h"
 #include "cmsis_os2.h"
 #include <string.h>
 #include "stm32f4xx_hal.h"              // Keil::Device:STM32Cube HAL:Common
@@ -86,8 +85,6 @@ __NO_RETURN void app_main (void *arg) {
   
   tid_rtc_lcd = osThreadNew(RTC_LCD_Thread, NULL, NULL);
   SNTP_Init();
-	
-	LowPower_Init();
   
   osThreadExit();
 }

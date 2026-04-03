@@ -22,5 +22,17 @@ typedef enum{
 	
 }Estado_t;
 
+typedef struct {
+  int humedad;
+	int Distancia;
+	int Estado;
+	int consumo;
+	int peso;
+} MSGQUEUE_Data_to_server_t; 
+
+typedef struct {
+  uint8_t dispensar;
+	uint8_t ack;
+} MSGQUEUE_Data_to_client_t;
 
 #endif

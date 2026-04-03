@@ -1,4 +1,4 @@
-#include "Pot.h"
+#include "adc.h"
 
 //hilos
 osThreadId_t            tid_ThPot;            

@@ -7,24 +7,10 @@ Thread 1 'Principal': Sample thread
 
 osThreadId_t tid_Control_Principal;        // Thread Principal
 
-//CLK variables
-
-extern Hora_t Hora;
-
-//JOYSTICK variables
-
-extern osMessageQueueId_t joy_Queue; 							//cola para recibir datos
-MSGQUEUE_JOY_t msg_recibir_joystick;    					//estructura donde se reciben datos
-
 //RGB variables
 
 extern osMessageQueueId_t RGB_Queue;
 MSGQUEUE_RGB_t msg_rgb;
-
-//LCD variables
-
-extern osMessageQueueId_t lcd_Queue;     					//cola para enviar datos al lcd
-LCD_t msg_enviar_lcd;           									// estrucutura a enviar al lcd
 
 //LM75
 

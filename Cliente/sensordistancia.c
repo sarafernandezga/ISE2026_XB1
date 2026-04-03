@@ -1,4 +1,4 @@
-#include "sensores.h"
+#include "sensordistancia.h"
 
 osThreadId_t tid_Control_sensor;
 osMessageQueueId_t LM_Queue;

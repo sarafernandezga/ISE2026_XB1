@@ -396,7 +396,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>COM-PC</GroupName>
+          <GroupName>COM</GroupName>
           <Files>
             <File>
               <FileName>com.c</FileName>
@@ -407,56 +407,6 @@
               <FileName>com.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\com.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>LCD</GroupName>
-          <Files>
-            <File>
-              <FileName>lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>Arial12x12.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Arial12x12.h</FilePath>
-            </File>
-            <File>
-              <FileName>lcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\lcd.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>CLK</GroupName>
-          <Files>
-            <File>
-              <FileName>thClk.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\thClk.h</FilePath>
-            </File>
-            <File>
-              <FileName>thClk.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\thClk.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>JOYSTICK</GroupName>
-          <Files>
-            <File>
-              <FileName>ThJoystick.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\ThJoystick.c</FilePath>
-            </File>
-            <File>
-              <FileName>ThJoystick.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\ThJoystick.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -491,7 +441,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>PWM</GroupName>
+          <GroupName>SERVOMOTOR</GroupName>
           <Files>
             <File>
               <FileName>PWM.c</FileName>
@@ -506,47 +456,32 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>MP3</GroupName>
-          <Files>
-            <File>
-              <FileName>MP3.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MP3.c</FilePath>
-            </File>
-            <File>
-              <FileName>MP3.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\MP3.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>ADC</GroupName>
           <Files>
             <File>
-              <FileName>Pot.c</FileName>
+              <FileName>adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Pot.c</FilePath>
+              <FilePath>.\adc.c</FilePath>
             </File>
             <File>
-              <FileName>Pot.h</FileName>
+              <FileName>adc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Pot.h</FilePath>
+              <FilePath>.\adc.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>LM75</GroupName>
+          <GroupName>I2C_Sensor</GroupName>
           <Files>
             <File>
-              <FileName>sensores.c</FileName>
+              <FileName>sensordistancia.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\sensores.c</FilePath>
+              <FilePath>.\sensordistancia.c</FilePath>
             </File>
             <File>
-              <FileName>sensores.h</FileName>
+              <FileName>sensordistancia.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\sensores.h</FilePath>
+              <FilePath>.\sensordistancia.h</FilePath>
             </File>
           </Files>
         </Group>

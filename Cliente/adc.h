@@ -1,5 +1,5 @@
-#ifndef __Pot_H
-#define __Pot_H
+#ifndef __adc_H
+#define __adc_H
 
 #include "stm32f4xx_hal.h"
 #include "cmsis_os2.h"

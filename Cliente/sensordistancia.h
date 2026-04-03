@@ -1,5 +1,5 @@
-#ifndef __SENSORES_H
-#define __SENSORES_H
+#ifndef __SENSORDISTANCIA_H
+#define __SENSORDISTANCIA_H
 
 #include "stm32f4xx_hal.h"
 #include "cmsis_os2.h"
@@ -7,7 +7,7 @@
 #include "Driver_I2C.h"
 
 // Registro del LM75
-#define LM75_TEMP_REG      0x00
+#define LM75_TEMP_REG      0x52
 
 // Direcciones I2C
 #define LM75_INT_ADDR      0x48   // Sensor interior

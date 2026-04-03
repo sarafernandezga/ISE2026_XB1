@@ -591,6 +591,36 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>COM</GroupName>
+          <Files>
+            <File>
+              <FileName>com.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\com.c</FilePath>
+            </File>
+            <File>
+              <FileName>com.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\com.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>MEM</GroupName>
+          <Files>
+            <File>
+              <FileName>mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\mem.c</FilePath>
+            </File>
+            <File>
+              <FileName>mem.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\mem.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::Board Support</GroupName>
         </Group>
         <Group>

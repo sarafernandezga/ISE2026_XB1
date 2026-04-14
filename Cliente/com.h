@@ -28,6 +28,7 @@ typedef struct {
 	int Estado;
 	int consumo;
 	int peso;
+	uint8_t ack;
 } MSGQUEUE_Data_to_server_t; 
 
 typedef struct {

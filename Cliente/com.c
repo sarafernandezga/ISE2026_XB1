@@ -1,11 +1,6 @@
 #include "COM.h"
  
-/*----------------------------------------------------------------------------
- 
-Thread 1 'Acelerometro': Sample thread
----------------------------------------------------------------------------*/
-
-osThreadId_t tid_Control_Com_recepcion;        // Thread Joystickid
+osThreadId_t tid_Control_Com_recepcion;
 osThreadId_t tid_Control_Com_transmision;
 
 osMessageQueueId_t cola_entrada;
@@ -27,7 +22,7 @@ static ARM_DRIVER_USART * USARTdrv = &Driver_USART3;
 static uint8_t error=0;
 
 static const osThreadAttr_t thread1_attr = {
-  .stack_size = 256                            // Create the thread stack with a size of 512 bytes
+  .stack_size = 256
 };
 
 

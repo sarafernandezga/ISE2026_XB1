@@ -8,14 +8,10 @@
 #include <stdint.h>
 
 #include "com.h"
-#include "lcd.h"
-#include "thClk.h"
-#include "thJoystick.h"
+
 #include "PWM.h"
 #include "leds_N.h"
-#include "Pot.h"
-#include "sensores.h"
-#include "MP3.h"
+
 
 typedef enum{
 	Reposo,

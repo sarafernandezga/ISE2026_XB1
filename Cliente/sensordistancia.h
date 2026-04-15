@@ -1,25 +1,21 @@
-#ifndef __SENSORDISTANCIA_H
-#define __SENSORDISTANCIA_H
+#ifndef SENSORDISTANCIA_H
+#define SENSORDISTANCIA_H
 
-#include "stm32f4xx_hal.h"
-#include "cmsis_os2.h"
 #include <stdint.h>
-#include "Driver_I2C.h"
+#include "cmsis_os2.h"
 
-// Registro del LM75
-#define LM75_TEMP_REG      0x52
+// --- DEFINICIONES ---
+#define MSGQUEUE_SENS_OBJECTS 16 // Tamaño de la cola de mensajes
 
-// Direcciones I2C
-#define LM75_INT_ADDR      0x48   // Sensor interior
-
-#define MSGQUEUE_SENS_OBJECTS  1
-
+// --- ESTRUCTURAS DE DATOS ---
 typedef struct {
-  float Ti;   // Temperatura interior
+    uint16_t Distancia; // Distancia medida en milímetros
 } MSGQUEUE_SENS_t;
 
-extern osMessageQueueId_t sens_Queue;
+// --- VARIABLES EXTERNAS ---
+extern osMessageQueueId_t VL_Queue;
 
-int Init_Thsensor (void);
+// --- PROTOTIPOS DE FUNCIONES ---
+int Init_Thsensor(void);
 
-#endif
+#endif /* POT_H */

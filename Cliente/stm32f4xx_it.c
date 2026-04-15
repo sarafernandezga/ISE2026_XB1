@@ -1,7 +1,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_it.h"
-#include "ThJoystick.h"
+
 
 #ifdef _RTE_
 #include "RTE_Components.h"             /* Component selection */
@@ -20,7 +20,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 
-extern osThreadId_t tid_ThJoystick;
+
 
 
 /* Private function prototypes -----------------------------------------------*/

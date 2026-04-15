@@ -15,7 +15,7 @@ MSGQUEUE_RGB_t msg_rgb;
 //LM75
 
 extern osMessageQueueId_t LM_Queue;       				//cola para recibir datos del lm75
-MSGQUEUE_SENS_t tempLM;         									//estructura para recibir datos del lm75
+       									//estructura para recibir datos del lm75
 
 //COM-PC
 

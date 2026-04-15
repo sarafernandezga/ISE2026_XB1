@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>HSE_VALUE=8000000</Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>..\Cliente</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -482,6 +482,16 @@
               <FileName>sensordistancia.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\sensordistancia.h</FilePath>
+            </File>
+            <File>
+              <FileName>VL53L0X.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\VL53L0X.c</FilePath>
+            </File>
+            <File>
+              <FileName>VL53L0X.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\VL53L0X.h</FilePath>
             </File>
           </Files>
         </Group>

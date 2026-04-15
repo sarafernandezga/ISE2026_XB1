@@ -486,6 +486,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>SPI_HUMEDAD</GroupName>
+          <Files>
+            <File>
+              <FileName>spih.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\spih.c</FilePath>
+            </File>
+            <File>
+              <FileName>spih.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\spih.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>

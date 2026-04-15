@@ -3,12 +3,18 @@
 osThreadId_t tid_Control_Com_recepcion;
 osThreadId_t tid_Control_Com_transmision;
 
+////////////////
+//osThreadId_t tid_test_Com_transmitir;
+
 osMessageQueueId_t cola_entrada;
 osMessageQueueId_t cola_salida;
 
 MSGQUEUE_Data_to_server_t Data_to_server;
 MSGQUEUE_Data_to_client_t Data_to_client;
 int ack;
+
+////////////////////////
+//void ThTestCom_transmitir (void* argument);
 
 void ThControlComRecepcion (void* argument);
 void ThControlComTransmision (void* argument);
@@ -31,6 +37,9 @@ int Init_ThCom (void)
 	
   tid_Control_Com_recepcion = osThreadNew(ThControlComRecepcion, NULL, &thread1_attr); 
 	tid_Control_Com_transmision = osThreadNew(ThControlComTransmision, NULL, &thread1_attr);
+	
+	///////////////////////
+//	tid_test_Com_transmitir = osThreadNew(ThTestCom_transmitir, NULL, &thread1_attr);
 	
   if (tid_Control_Com_recepcion == NULL)
   {
@@ -68,7 +77,7 @@ void ThControlComRecepcion(void *argument) {
 	
 	USARTdrv->Initialize(Com_Callback);
 	USARTdrv->PowerControl(ARM_POWER_FULL);
-	USARTdrv->Control(ARM_USART_MODE_ASYNCHRONOUS | ARM_USART_DATA_BITS_8 | ARM_USART_PARITY_NONE | ARM_USART_STOP_BITS_1 | ARM_USART_FLOW_CONTROL_NONE, 115200);
+	USARTdrv->Control(ARM_USART_MODE_ASYNCHRONOUS | ARM_USART_DATA_BITS_8 | ARM_USART_PARITY_NONE | ARM_USART_STOP_BITS_1 | ARM_USART_FLOW_CONTROL_NONE, 9600);
 	
 	USARTdrv->Control(ARM_USART_CONTROL_TX, 1);
 	USARTdrv->Control(ARM_USART_CONTROL_RX, 1);
@@ -140,7 +149,7 @@ void ThControlComTransmision (void* argument){
 		buffer_datos_entrada[5] = Data_to_server.Estado;
 		buffer_datos_entrada[6] = ack;
 		buffer_datos_entrada[7] = EOT;		
-		USARTdrv->Send(buffer_datos_entrada, strlen(buffer_datos_entrada)); 
+		USARTdrv->Send(buffer_datos_entrada, 8); 
 		ack = 0;
 		osThreadFlagsWait(Flag_Recibido2, osFlagsWaitAny, osWaitForever);
 		
@@ -163,3 +172,22 @@ void Com_Callback(uint32_t event) {
 		osThreadFlagsSet(tid_Control_Com_transmision, Flag_Recibido2);
 	}
 }
+
+
+//void ThTestCom_transmitir (void* argument){
+//		MSGQUEUE_Data_to_server_t trama;
+//    uint8_t buffer_test[BUFFER_SIZE];
+//    int i=0;
+//	
+//	while(1){
+//    trama.consumo = 0x21; // en ASCII no es nada
+//    trama.Distancia = 0x25; // en ASCII envia un %
+//    trama.Estado = 0x05; // en ASCII no es nada
+//    trama.humedad = 0x24; // en ASCII envia un $
+//    trama.peso = 0x25; // en ASCII envia un simbolo
+//		trama.ack = 1;
+//		
+//		osMessageQueuePut(cola_entrada, &trama, NULL, 0U);
+//		osDelay(100);
+//	}
+//}

@@ -7,14 +7,15 @@
 #include <string.h>
 #include <stdint.h>
 
-#define POT_MIN_TEMP     0.0f
-#define POT_MAX_TEMP    30.0f
+#define POT_MIN_PESO     0.0f
+#define POT_MAX_PESO    1000.0f
 #define POT_ADC_MAX   4095.0f
 
 #define MSGQUEUE_POT_OBJECTS  1
 
 typedef struct {
-  uint8_t Vol;   /* Volumen  */
+  uint16_t peso;   /* peso  */
+	uint16_t consumo; // potencia
 } MSGQUEUE_POT_t;
 
 extern osMessageQueueId_t pot_Queue;         

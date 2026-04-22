@@ -28,9 +28,9 @@ static void MX_TIM1_PWM_Init (void)
   HAL_GPIO_Init(PWM_GPIO_PORT, &gpio);
 
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler         = 168 - 1;     /* 168 MHz /168 = 1 MHz */
+  htim1.Init.Prescaler         = 336 - 1;     /* 168 MHz /336 = 500 kHz */
   htim1.Init.CounterMode       = TIM_COUNTERMODE_UP;
-  htim1.Init.Period            = 500 - 1;   /* 1 MHz /500 = 2 kHz */
+  htim1.Init.Period            = 10000 - 1;   /* 500 kHz /10000 = 50 Hz */
   htim1.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   HAL_TIM_PWM_Init(&htim1);
@@ -48,7 +48,7 @@ static void MX_TIM1_PWM_Init (void)
 
 }
 
-/* Conversión duty-cycle a valor de CCR (0-100 %) */
+/* Conversión duty-cycle a valor de CCR (0-100 ) */
 static inline uint32_t Duty_To_CCR(uint8_t duty)
 {
   if (duty > PWM_DUTY_MAX) duty = PWM_DUTY_MAX;

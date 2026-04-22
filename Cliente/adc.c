@@ -4,6 +4,7 @@
 osThreadId_t            tid_ThPot;            
 osMessageQueueId_t      pot_Queue;   
 
+
 static const osThreadAttr_t thread_attr_pot = {
   .stack_size = 256
 };
@@ -32,6 +33,11 @@ static void MX_ADC1_Init (void)
 
   ADC_ChannelConfTypeDef sConfig;
 
+  /* POT_1  -> PA3 -> ADC1_IN3 */
+  sConfig.Channel      = ADC_CHANNEL_3;
+  sConfig.Rank         = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_144CYCLES;
+  HAL_ADC_ConfigChannel(&hadc1, &sConfig);
 
   /* POT_2  -> PC0 -> ADC1_IN10 */
   sConfig.Channel      = ADC_CHANNEL_10;
@@ -39,27 +45,32 @@ static void MX_ADC1_Init (void)
   HAL_ADC_ConfigChannel(&hadc1, &sConfig);
 }
 
-static inline uint8_t Pot_MapToTemp (uint32_t adc_val)
+static inline uint16_t Pot_MapToTemp (uint32_t adc_val)
 {
-  return (uint8_t)(POT_MIN_TEMP + ((float)adc_val / POT_ADC_MAX) * (POT_MAX_TEMP - POT_MIN_TEMP));
+  return (uint16_t)(((float)adc_val/POT_ADC_MAX)*(1000));
 }
 
 static void ThPot (void *argument)
 {
 
-  uint32_t raw2;
+  uint32_t raw1, raw2;
   MSGQUEUE_POT_t msg;
 
   while(1) {
     HAL_ADC_Start(&hadc1);
+
+    HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY); /* Conversión canal 1 */
+    raw1 = HAL_ADC_GetValue(&hadc1);
 
     HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY); /* Conversión canal 2 */
     raw2 = HAL_ADC_GetValue(&hadc1);
 
     HAL_ADC_Stop(&hadc1);
 
-    //Escalado a volumen (0-30)
-    msg.Vol = Pot_MapToTemp(raw2);
+    //Escalado a peso (0-1000g)
+    msg.peso = Pot_MapToTemp(raw1);
+		//Escalado a corriente (???)
+    //msg.consumo = Pot_MapToTemp(raw2);
 
     osMessageQueuePut(pot_Queue, &msg, 0U, 0U);
 
@@ -80,3 +91,9 @@ int Init_ThPot (void)
 	
   return (tid_ThPot == NULL) ? -1 : 0;
 }
+
+
+
+
+
+

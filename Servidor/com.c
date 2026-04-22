@@ -68,7 +68,7 @@ void ThControlComRecepcion(void *argument) {
 	
 	USARTdrv->Initialize(Com_Callback);
 	USARTdrv->PowerControl(ARM_POWER_FULL);
-	USARTdrv->Control(ARM_USART_MODE_ASYNCHRONOUS | ARM_USART_DATA_BITS_8 | ARM_USART_PARITY_NONE | ARM_USART_STOP_BITS_1 | ARM_USART_FLOW_CONTROL_NONE, 115200);
+	USARTdrv->Control(ARM_USART_MODE_ASYNCHRONOUS | ARM_USART_DATA_BITS_8 | ARM_USART_PARITY_NONE | ARM_USART_STOP_BITS_1 | ARM_USART_FLOW_CONTROL_NONE, 9600);
 	
 	USARTdrv->Control(ARM_USART_CONTROL_TX, 1);
 	USARTdrv->Control(ARM_USART_CONTROL_RX, 1);
@@ -104,7 +104,7 @@ void ThControlComRecepcion(void *argument) {
 				Data_to_server.consumo   =	bufferDatos[4];
 				Data_to_server.peso 	   =  bufferDatos[5];
 				Data_to_server.ack			 =	bufferDatos[6];
-				osMessageQueuePut(cola_salida, &Data_to_client, NULL, 0U);
+				osMessageQueuePut(cola_salida, &Data_to_server, NULL, 0U);
 				index=0;
 				//mandamos ack
 				ack = 1;

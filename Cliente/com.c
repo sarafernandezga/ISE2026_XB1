@@ -27,16 +27,14 @@ static ARM_DRIVER_USART * USARTdrv = &Driver_USART3;
 
 static uint8_t error=0;
 
-static const osThreadAttr_t thread1_attr = {
-  .stack_size = 256
-};
+
 
 
 int Init_ThCom (void)
 {
 	
-  tid_Control_Com_recepcion = osThreadNew(ThControlComRecepcion, NULL, &thread1_attr); 
-	tid_Control_Com_transmision = osThreadNew(ThControlComTransmision, NULL, &thread1_attr);
+  tid_Control_Com_recepcion = osThreadNew(ThControlComRecepcion, NULL, NULL); 
+	tid_Control_Com_transmision = osThreadNew(ThControlComTransmision, NULL, NULL);
 	
 	///////////////////////
 //	tid_test_Com_transmitir = osThreadNew(ThTestCom_transmitir, NULL, &thread1_attr);

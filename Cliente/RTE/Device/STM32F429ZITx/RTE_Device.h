@@ -1225,7 +1225,7 @@
 #define RTE_SPI1                        1
 
 //   <o> SPI1_MISO Pin <0=>Not Used <1=>PA6 <2=>PB4
-#define RTE_SPI1_MISO_PORT_ID           0
+#define RTE_SPI1_MISO_PORT_ID           2
 #if    (RTE_SPI1_MISO_PORT_ID == 0)
 #define RTE_SPI1_MISO                   0
 #elif  (RTE_SPI1_MISO_PORT_ID == 1)

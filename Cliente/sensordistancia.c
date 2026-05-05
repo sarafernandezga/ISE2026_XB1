@@ -33,8 +33,7 @@ static void I2C_Callback(uint32_t event);
 // ============================================================================
 int Init_Thsensor(void)
 {
-  I2C1_Init();
-  
+	
   busyEventFlag_vl = osEventFlagsNew(NULL);
   if (busyEventFlag_vl == NULL) return -1;
 
@@ -55,14 +54,16 @@ void ThControlsensor(void *argument)
 {
   MSGQUEUE_SENS_t datos;
 
-  // 1. Configurar la estructura del sensor
+	osDelay(200);
+	I2C1_Init();
+  
+	// 1. Configurar la estructura del sensor
   mi_sensor.address = 0x29;    // Dirección I2C por defecto
   mi_sensor.io_2v8 = true;     // Modo de voltaje
   mi_sensor.io_timeout = 500;  // 500ms de timeout
 
   // 2. Inicializar el sensor
   if (!VL53L0X_init(&mi_sensor)) {
-      printf("Error inicializando VL53L0X\n");
       // Si falla, el hilo se queda aquí para no bloquear el sistema
       while(1) { osDelay(1000); } 
   }
@@ -79,8 +80,6 @@ void ThControlsensor(void *argument)
     } else {
         datos.Distancia = 0xFFFF; // Código de error
     }
-    
-    printf("Distancia: %d mm\r\n", datos.Distancia);
 
     // 5. Enviar los datos a la cola sin bloquear
     osMessageQueuePut(VL_Queue, &datos, 0, 0);

@@ -97,7 +97,7 @@ void ThHum (void *argument)
       temperatura_centi = BME280_Compensate_T(adc_T);
       humedad_percent   = BME280_Compensate_H(adc_H);
 
-			printf("%f", humedad_percent);
+			//printf("%f\n", humedad_percent);
       if (adc_H < 0) {
         humedad_raw = 0;
       } else if (adc_H > 65535) {

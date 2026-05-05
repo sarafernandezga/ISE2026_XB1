@@ -3,14 +3,11 @@
 
 #include "Principal.h"
 #include "com.h"
-#include "lcd.h"
-#include "thClk.h"
-#include "thJoystick.h"
 #include "leds_N.h"
-#include "MP3.h"
 #include "Pot.h"
 #include "PWM.h"
-#include "sensores.h"
+
+
 
 #ifdef _RTE_
 #include "RTE_Components.h"             // Component selection
@@ -75,7 +72,6 @@ int main(void)
 
   /* Add your application code here*/
 	LEDs_Init();
-	Joystick_Init();
 #ifdef RTE_CMSIS_RTOS2
   /* Initialize CMSIS-RTOS2 */
   osKernelInitialize ();
@@ -83,15 +79,6 @@ int main(void)
   /* Create thread functions that start executing, 
   Example: osThreadNew(app_main, NULL, NULL); */
 
-	estado1 |= Init_ThLCD();
-	estado1 |= Init_ThClk();
-	estado1 |= Init_ThJOYSTICK(); 
-	estado1 |= Init_ThLEDS();
-	estado1 |= Init_ThPWM();
-	estado1 |= Init_ThCom();
-	estado1 |= Init_ThMP3();
-	estado1 |= Init_ThPot();
-	estado1 |= Init_Thsensor();
 	estado1 |= Init_ThPrincipal();
 
   /* Start thread execution */

@@ -16,6 +16,9 @@ int Init_ThCom(void);                                                  // Funcio
 #define Flag_Recibido2 0x02
 #define BUFFER_SIZE 64
 
+extern osMessageQueueId_t cola_entrada;
+extern osMessageQueueId_t cola_salida;
+
 typedef enum{
 	InitState,
 	DefaultState

@@ -5,9 +5,10 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.34.0.0
 Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: r r upm Flex license: error obtaining information 
+License Information: Marcos Indiano Menéndez UPM Flex license: MDK Professional 5.34 (Flex) (mdk_pro) Operation stops: 24 Jan 2027
+ 
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.34.0.0
+Toolchain:       MDK Professional 5.34 (Flex)  Version: 5.34.0.0
 Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
 C Compiler:      ArmClang.exe V6.16
 Assembler:       Armasm.exe V6.16
@@ -20,81 +21,13 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.8.0
 Dialog DLL:      TCM.DLL V1.48.0.0
  
 <h2>Project:</h2>
-C:\Users\richi\Documents\ISE\ISE2026_XB1\Cliente\P6E3.uvprojx
-Project File Date:  04/22/2026
+C:\Users\marco\Desktop\Cuarto universidad\ISE\Bloque2\Cliente\P6E3.uvprojx
+Project File Date:  05/05/2026
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-adc.c(71): error: no member named 'peso' in 'MSGQUEUE_POT_t'
-    msg.peso = Pot_MapToTemp(raw1);
-    ~~~ ^
-1 error generated.
-compiling adc.c...
-main.c(6): error: 'lcd.h' file not found
-#include "lcd.h"
-         ^~~~~~~
-1 error generated.
-compiling main.c...
-Principal.c(33): error: unknown type name 'MSG_MP3_t'
-MSG_MP3_t tramas_mp3;
-^
-Principal.c(41): error: unknown type name 'MSGQUEUE_POT_t'; did you mean 'MSGQUEUE_PWM_t'?
-MSGQUEUE_POT_t volumen;
-^~~~~~~~~~~~~~
-MSGQUEUE_PWM_t
-../Cliente/PWM.h(24): note: 'MSGQUEUE_PWM_t' declared here
-} MSGQUEUE_PWM_t;
-  ^
-Principal.c(65): error: unknown type name 'Hora_t'
-        static Hora_t Hora_aux;
-               ^
-Principal.c(69): error: unknown type name 'Hora_t'
-        static Hora_t tiempo;
-               ^
-Principal.c(81): error: use of undeclared identifier 'Hora'; did you mean 'for'?
-        sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-                                                                                    ^~~~
-                                                                                    for
-Principal.c(81): error: expected expression
-Principal.c(81): error: use of undeclared identifier 'Hora'; did you mean 'for'?
-        sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-                                                                                                ^~~~
-                                                                                                for
-Principal.c(81): error: expected expression
-Principal.c(81): error: use of undeclared identifier 'Hora'; did you mean 'for'?
-        sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-                                                                                                              ^~~~
-                                                                                                              for
-Principal.c(81): error: expected expression
-Principal.c(89): error: use of undeclared identifier 'Hora'; did you mean 'for'?
-        sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-                                                                                    ^~~~
-                                                                                    for
-Principal.c(89): error: expected expression
-Principal.c(89): error: use of undeclared identifier 'Hora'; did you mean 'for'?
-        sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-                                                                                                ^~~~
-                                                                                                for
-Principal.c(89): error: expected expression
-Principal.c(89): error: use of undeclared identifier 'Hora'; did you mean 'for'?
-        sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-                                                                                                              ^~~~
-                                                                                                              for
-Principal.c(89): error: expected expression
-Principal.c(97): error: use of undeclared identifier 'Hora'; did you mean 'for'?
-        sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-                                                                                    ^~~~
-                                                                                    for
-Principal.c(97): error: expected expression
-Principal.c(97): error: use of undeclared identifier 'Hora'; did you mean 'for'?
-        sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-                                                                                                ^~~~
-                                                                                                for
-fatal error: too many errors emitted, stopping now [-ferror-limit=]
-20 errors generated.
-compiling Principal.c...
-".\Objects\P6E3.axf" - 21 Error(s), 0 Warning(s).
+".\Objects\P6E3.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -135,12 +68,12 @@ Package Vendor: Keil
   .\RTE\CMSIS
   .\RTE\Device\STM32F429ZITx
   .\RTE\_Target_1
-  C:\Users\richi\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
-  C:\Users\richi\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Driver\Include
-  C:\Users\richi\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\Include
-  C:\Users\richi\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include
-  C:\Users\richi\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
-  C:\Users\richi\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc
+  C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Driver\Include
+  C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\Include
+  C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include
+  C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+  C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc
 
 <h2>Collection of Component Files used:</h2>
 
@@ -161,32 +94,32 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.5.0
 
    * Component: ARM::CMSIS:RTOS2:Keil RTX5:Source:5.5.3
-      Include file:  CMSIS\RTOS2\RTX\Include\rtx_os.h
-      Source file:   CMSIS\RTOS2\RTX\Config\RTX_Config.c
+      Source file:   CMSIS\RTOS2\RTX\Template\Semaphore.c
       Include file:  CMSIS\RTOS2\RTX\Config\RTX_Config.h
-      Source file:   CMSIS\RTOS2\RTX\Template\main.c
-      Source file:   CMSIS\RTOS2\RTX\Template\MemPool.c
-      Source file:   CMSIS\RTOS2\RTX\Template\svc_user.c
+      Source file:   CMSIS\RTOS2\RTX\Config\RTX_Config.c
+      Source file:   CMSIS\RTOS2\RTX\Template\Thread.c
+      Source file:   CMSIS\RTOS2\RTX\Template\Timer.c
+      Source file:   CMSIS\RTOS2\RTX\Template\Mutex.c
       Source file:   CMSIS\RTOS2\RTX\Source\rtx_kernel.c
       Source file:   CMSIS\RTOS2\RTX\Template\MsgQueue.c
-      Source file:   CMSIS\RTOS2\RTX\Template\Semaphore.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_delay.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_mutex.c
+      Include file:  CMSIS\RTOS2\RTX\Include\rtx_os.h
+      Source file:   CMSIS\RTOS2\RTX\Template\svc_user.c
       Source file:   CMSIS\RTOS2\RTX\Template\Events.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_thread.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_delay.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_timer.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_evflags.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_mutex.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_semaphore.c
       Source file:   CMSIS\RTOS2\RTX\Source\rtx_memory.c
       Source file:   CMSIS\RTOS2\RTX\Source\rtx_mempool.c
+      Source file:   CMSIS\RTOS2\RTX\Template\main.c
+      Source file:   CMSIS\RTOS2\RTX\Template\MemPool.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_evr.c
+      Source file:   CMSIS\RTOS2\RTX\Source\rtx_msgqueue.c
+      Source file:   CMSIS\RTOS2\RTX\Source\GCC\irq_armv7m.S
       Source file:   CMSIS\RTOS2\RTX\Source\rtx_lib.c
       Source file:   CMSIS\RTOS2\RTX\Source\rtx_system.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_msgqueue.c
-      Source file:   CMSIS\RTOS2\RTX\Template\Mutex.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_timer.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_semaphore.c
-      Source file:   CMSIS\RTOS2\RTX\Template\Thread.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_evr.c
-      Source file:   CMSIS\RTOS2\RTX\Source\GCC\irq_armv7m.S
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_thread.c
-      Source file:   CMSIS\RTOS2\RTX\Source\rtx_evflags.c
-      Source file:   CMSIS\RTOS2\RTX\Template\Timer.c
       Source file:   CMSIS\RTOS2\Source\os_systick.c
 
    * Component: Keil::CMSIS Driver:I2C:2.10
@@ -200,18 +133,18 @@ Package Vendor: Keil
 
    * Component: Keil::Device:STM32Cube Framework:Classic:1.7.9
       Include file:  CMSIS\Driver\Config\RTE_Device.h
-      Source file:   MDK\Templates_LL\Src\main.c
-      Source file:   MDK\Templates\Src\stm32f4xx_it.c
-      Source file:   MDK\Templates\Src\stm32f4xx_hal_msp.c
       Include file:  MDK\Templates_LL\Inc\main.h
+      Source file:   MDK\Templates\Src\main.c
+      Source file:   MDK\Templates_LL\Src\main.c
+      Source file:   MDK\Templates\Src\stm32f4xx_hal_msp.c
+      Include file:  MDK\Templates\Inc\stm32f4xx_it.h
+      Source file:   MDK\Templates\Src\stm32f4xx_it.c
       Include file:  MDK\Templates\Inc\main.h
       Include file:  MDK\Templates\Inc\stm32f4xx_hal_conf.h
-      Source file:   MDK\Templates\Src\main.c
-      Include file:  MDK\Templates\Inc\stm32f4xx_it.h
 
    * Component: Keil::Device:STM32Cube HAL:ADC:1.7.9
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.c
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.c
 
    * Component: Keil::Device:STM32Cube HAL:Common:1.7.9
       Include file:  Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h
@@ -243,20 +176,19 @@ Package Vendor: Keil
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.c
 
    * Component: Keil::Device:STM32Cube HAL:TIM:1.7.9
-      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.c
+      Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.c
 
    * Component: Keil::Device:STM32Cube HAL:USART:1.7.9
       Source file:   Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_usart.c
 
    * Component: Keil::Device:Startup:2.6.3
-      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
       Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
       Source file:   MDK\Device\Source\ARM\STM32F42xxx_43xxx_OPT.s
+      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429xx.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
-Target not created.
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

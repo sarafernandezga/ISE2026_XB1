@@ -1,409 +1,230 @@
 #include "Principal.h"
- 
-/*----------------------------------------------------------------------------
- 
-Thread 1 'Principal': Sample thread
----------------------------------------------------------------------------*/
 
-osThreadId_t tid_Control_Principal;        // Thread Principal
+#include "COM.h"
+#include "PWM.h"
+#include "adc.h"
+#include "sensordistancia.h"
+#include "spih.h"
 
-//RGB variables
+/*----------------------------------------------------------
+ * Thread principal de integración cliente
+ *---------------------------------------------------------*/
 
-extern osMessageQueueId_t RGB_Queue;
-MSGQUEUE_RGB_t msg_rgb;
+osThreadId_t tid_ThPrincipal;
 
-//LM75
+static const osThreadAttr_t attr_principal = {
+  .name = "Principal_Cliente",
+  .stack_size = 1024,
+  .priority = osPriorityNormal
+};
 
-extern osMessageQueueId_t LM_Queue;       				//cola para recibir datos del lm75
-       									//estructura para recibir datos del lm75
+static void ThPrincipal(void *argument);
 
-//COM-PC
+/*----------------------------------------------------------
+ * Parámetros de funcionamiento
+ *---------------------------------------------------------*/
 
-extern osMessageQueueId_t cola_entrada;  					//cola para enviar datos al com-pc
-extern osMessageQueueId_t cola_salida;   					//cola para recibir datos del com-pc
-char buffer_datos_entrada_compc[BUFFER_SIZE];  		//buffer que tendrá los datos de entrada del com_pc
-char buffer_datos_salida_compc[BUFFER_SIZE];   		//buffer que tendrá los datos de salida del com_pc
+#define PRINCIPAL_PERIOD_MS        1000U
+#define PWM_DISPENSAR_DUTY        70U
 
-//MP3
+#define DISTANCIA_ERROR_VALUE     0xFFFFU
+#define ESTADO_OK                 0x01U
+#define ESTADO_ERROR_HUM          0x02U
+#define ESTADO_ERROR_DIST         0x04U
 
-extern osMessageQueueId_t cola_salida_MP3;
-extern osMessageQueueId_t cola_entrada_MP3;
-char buffer_datos_salida_mp3[BUFFER_SIZE];
-char buffer_datos_entrada_mp3[BUFFER_SIZE];
-MSG_MP3_t tramas_mp3;
+/*----------------------------------------------------------
+ * Funciones auxiliares
+ *---------------------------------------------------------*/
 
-//PWM
-extern osMessageQueueId_t pwm_Queue;
-MSGQUEUE_PWM_t duty_bip;
-
-//ADC
-extern osMessageQueueId_t pot_Queue;
-MSGQUEUE_POT_t volumen;
-
-
-
-osTimerId_t t_rep;
-void t_rep_callback(void* argument);
-
-void ThControlPrincipal (void* argument);         // Thread function
-
-int Init_ThPrincipal (void)
+static uint8_t Saturar_U8(uint32_t value)
 {
-	
-  tid_Control_Principal = osThreadNew(ThControlPrincipal, NULL, NULL);
-		
-  if (tid_Control_Principal == NULL)
-  {
-    return(-1);
+  if (value > 255U) return 255U;
+  return (uint8_t)value;
+}
+
+static uint8_t Humedad_To_U8(float humedad)
+{
+  if (humedad < 0.0f) humedad = 0.0f;
+  if (humedad > 100.0f) humedad = 100.0f;
+
+  return (uint8_t)(humedad + 0.5f);
+}
+
+/*
+ * El VL53L0X entrega distancia en mm.
+ * Como la trama solo tiene uint8_t, se manda en cm.
+ * Ejemplo: 1230 mm -> 123 cm.
+ */
+static uint8_t Distancia_To_U8(uint16_t distancia_mm)
+{
+  if (distancia_mm == DISTANCIA_ERROR_VALUE) {
+    return 255U;
   }
-  return(0);
+
+  return Saturar_U8(distancia_mm / 10U);
 }
 
-void ThControlPrincipal(void* args){
-
-	Estado_LCD modo_lcd = Reposo;
-	static Hora_t Hora_aux;
-	static uint8_t status;
-	static uint8_t carpeta=0;
-	static uint8_t fichero=0;
-	static Hora_t tiempo;
-	static bool sonando=false;
-	static uint8_t carpeta_aux=0;
-	static uint8_t fichero_aux=0;
-	static char buffer_com[BUFFER_SIZE];
-	Estado_programacion_t estado_programacion= HORAS;
-	
-	
-	//RESET MP3
-	tramas_mp3.accion4=0X0C;
-	tramas_mp3.cantidad7=0X00;
-	tramas_mp3.directory6=0x00;
-	sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-	osMessageQueuePut(cola_entrada, &buffer_com, 0U, 0U);
-	osMessageQueuePut(cola_entrada_MP3, &tramas_mp3, 0U, 0U);
-
-	//SELECT DEVICE
-	tramas_mp3.accion4=0X09;
-	tramas_mp3.cantidad7=0X02;
-	tramas_mp3.directory6=0x00;
-	sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-	osMessageQueuePut(cola_entrada, &buffer_com, 0U, 0U);
-	osMessageQueuePut(cola_entrada_MP3, &tramas_mp3, 0U, 0U);
-	
-	//SLEEP
-	tramas_mp3.accion4=0X0A;
-	tramas_mp3.cantidad7=0X00;
-	tramas_mp3.directory6=0x00;
-	sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-	osMessageQueuePut(cola_entrada, &buffer_com, 0U, 0U);
-	osMessageQueuePut(cola_entrada_MP3, &tramas_mp3, 0U, 0U);	
-	
-	
-	t_rep = osTimerNew(t_rep_callback, osTimerPeriodic, &tiempo, NULL);
-
-	
-  while(1){
-		
-		status = osMessageQueueGet(joy_Queue, &msg_recibir_joystick, NULL, 0U);				
-		
-		switch(modo_lcd){
-			default:
-				
-			//---MODO REPOSO
-			
-			case Reposo:
-				
-				osMessageQueueGet(LM_Queue, &tempLM, NULL, 0U);
-			
-				if(msg_recibir_joystick.gesto == CENTER_LARGA){
-					
-					modo_lcd = Reproduccion;
-					tramas_mp3.accion4=0X0B; //Despertar
-					tramas_mp3.cantidad7=0X00;
-					tramas_mp3.directory6=0x00;
-					
-					sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-					osMessageQueuePut(cola_entrada, &buffer_com, 0U, 0U);
-					osMessageQueuePut(cola_entrada_MP3, &tramas_mp3, 0U, 0U);
-				} 
-				
-				sprintf(msg_enviar_lcd.mensaje, "  SBM 2025 Temp:%.1f C", tempLM.Ti);
-				msg_enviar_lcd.linea = 1;
-				osMessageQueuePut(lcd_Queue, &msg_enviar_lcd, 0U, 0U);
-				
-				sprintf(msg_enviar_lcd.mensaje, "       %02d:%02d:%02d", Hora.Horas, Hora.Minutos, Hora.Segundos);
-				msg_enviar_lcd.linea = 2;
-				osMessageQueuePut(lcd_Queue, &msg_enviar_lcd, 0U, 0U);
-				
-			break;
-				
-				
-				
-				//---MODO REPRODUCCION---
-			
-			case Reproduccion:
-				
-				if (osMessageQueueGet(pot_Queue, &volumen, 0U, 0U) == osOK){
-					tramas_mp3.accion4=0X06; //Volumen
-					tramas_mp3.directory6=0X00;
-					tramas_mp3.cantidad7=volumen.Vol;
-					sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-					osMessageQueuePut(cola_entrada, &buffer_com, 0U, 0U);
-				}				
-				
-				if(msg_recibir_joystick.gesto == CENTER_LARGA){
-					modo_lcd = Programacion;
-					Hora_aux.Horas = Hora.Horas;
-					Hora_aux.Minutos = Hora.Minutos;
-					Hora_aux.Segundos = Hora.Segundos;
-					tramas_mp3.accion4=0X16; //STOP
-					tramas_mp3.directory6=0X00;
-					tramas_mp3.cantidad7=0X00;
-					sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-					osMessageQueuePut(cola_entrada, &buffer_com, 0U, 0U);
-
-				}
-				
-				if(msg_recibir_joystick.gesto == CENTER_CORTA){
-					
-					duty_bip.duty=20;
-					osMessageQueuePut(pwm_Queue, &duty_bip, 0U, 0U);
-					
-					if(sonando == true){
-						sonando = false;
-						tramas_mp3.accion4=0X0E; //pause
-						tramas_mp3.directory6=0X00;
-						tramas_mp3.cantidad7=0X00;	
-						sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-						osMessageQueuePut(cola_entrada, &buffer_com, 0U, 0U);
-						
-						osTimerStop(t_rep);
-						
-						msg_rgb.freq = 1000;
-						msg_rgb.rgb = LedAzul_ON;
-						osMessageQueuePut(RGB_Queue, &msg_rgb, 0U, 0U);
-					
-					}else{
-						sonando = true;
-						osTimerStart(t_rep, 1000U);
-						msg_rgb.freq = 250;
-						msg_rgb.rgb = LedVerde_ON;
-						osMessageQueuePut(RGB_Queue, &msg_rgb, 0U, 0U);
-						
-						if(carpeta_aux != carpeta || fichero_aux != fichero){
-							tramas_mp3.accion4=0X0F; // play la cancion seleccionada
-							tramas_mp3.directory6= fichero;
-							tramas_mp3.cantidad7= carpeta;
-							sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-							osMessageQueuePut(cola_entrada, &buffer_com, 0U, 0U);
-							fichero_aux = fichero;
-							carpeta_aux = carpeta;
-							tiempo.Minutos=0;
-							tiempo.Segundos=0;
-						
-						}else{
-							tramas_mp3.accion4=0X0D; //play
-							tramas_mp3.directory6=0X00;
-							tramas_mp3.cantidad7=0X00;
-							sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-							osMessageQueuePut(cola_entrada, &buffer_com, 0U, 0U);
-							
-						}
-					}	
-				}
-				
-				
-				if(msg_recibir_joystick.gesto == RIGHT_CORTA){
-					if (fichero == 255){
-						fichero = 0;
-					}else{
-						fichero++;
-					}
-					
-				}
-				
-				if(msg_recibir_joystick.gesto == LEFT_CORTA){
-					if (fichero == 0){
-						fichero = 255;
-					}else{
-						fichero--;
-					}
-				}
-				
-				if(msg_recibir_joystick.gesto == UP_CORTA){
-					if (carpeta == 255){
-						carpeta = 0;
-					}else{
-						carpeta++;
-
-					}
-				}
-				
-				if(msg_recibir_joystick.gesto == DOWN_CORTA){
-					if (carpeta == 0){
-						carpeta = 255;
-					}else{
-						carpeta--;
-
-					}
-				}
-				
-				sprintf(msg_enviar_lcd.mensaje, " F:%d C:%d,  VOL:%02d",carpeta, fichero, volumen.Vol);
-				msg_enviar_lcd.linea = 1;
-				osMessageQueuePut(lcd_Queue, &msg_enviar_lcd, 0U, 0U);
-				
-				sprintf(msg_enviar_lcd.mensaje, "   T: %d:%d", tiempo.Minutos, tiempo.Segundos);
-				msg_enviar_lcd.linea = 2;
-				osMessageQueuePut(lcd_Queue, &msg_enviar_lcd, 0U, 0U);
-				
-			
-			break;
-			
-			
-				
-				//---MODO PROGRAMACION---
-				
-				
-			case Programacion:
-				osMessageQueueGet(LM_Queue, &tempLM, NULL, 0U);	
-				
-				switch(estado_programacion){
-					
-					default:
-					case HORAS:
-						if(msg_recibir_joystick.gesto == UP_CORTA){
-							if(Hora_aux.Horas == 23){
-								Hora_aux.Horas = 0;
-							}else{
-								Hora_aux.Horas++;
-							}
-						
-						}
-						
-						if(msg_recibir_joystick.gesto == DOWN_CORTA){
-							if(Hora_aux.Horas == 0){
-								Hora_aux.Horas = 23;
-							}else{
-								Hora_aux.Horas--;
-							}
-						
-						}
-						
-						if(msg_recibir_joystick.gesto == RIGHT_CORTA){
-							estado_programacion = MINUTOS;
-						}
-						
-						if(msg_recibir_joystick.gesto == LEFT_CORTA){
-							estado_programacion = SEGUNDOS;
-						}
-						
-					break;
-					
-					case MINUTOS:
-						if(msg_recibir_joystick.gesto == UP_CORTA){
-							if(Hora_aux.Minutos == 59){
-								Hora_aux.Minutos = 0;
-							}else{
-								Hora_aux.Minutos++;
-							}
-						
-						}
-						
-						if(msg_recibir_joystick.gesto == DOWN_CORTA){
-							if(Hora_aux.Minutos == 0){
-								Hora_aux.Minutos = 59;
-							}else{
-								Hora_aux.Minutos--;
-							}
-						
-						}
-						
-						if(msg_recibir_joystick.gesto == RIGHT_CORTA){
-							estado_programacion = SEGUNDOS;
-						}
-						
-						if(msg_recibir_joystick.gesto == LEFT_CORTA){
-							estado_programacion = HORAS;
-						}
-										
-					break;
-					
-					
-					case SEGUNDOS:
-						if(msg_recibir_joystick.gesto == UP_CORTA){
-							if(Hora_aux.Segundos == 59){
-								Hora_aux.Segundos = 0;
-							}else{
-								Hora_aux.Segundos++;
-							}
-						
-						}
-						
-						if(msg_recibir_joystick.gesto == DOWN_CORTA){
-							if(Hora_aux.Segundos == 0){
-								Hora_aux.Segundos = 59;
-							}else{
-								Hora_aux.Segundos--;
-							}
-						
-						}
-						
-						if(msg_recibir_joystick.gesto == RIGHT_CORTA){
-							estado_programacion = HORAS;
-						}
-						
-						if(msg_recibir_joystick.gesto == LEFT_CORTA){
-							estado_programacion = MINUTOS;
-						}
-					
-					break;
-					
-				}
-					
-				if(msg_recibir_joystick.gesto == CENTER_CORTA){
-					Hora.Horas = Hora_aux.Horas;
-					Hora.Minutos = Hora_aux.Minutos;
-					Hora.Segundos = Hora_aux.Segundos;
-				}
-				if(msg_recibir_joystick.gesto == CENTER_LARGA){
-					modo_lcd = Reposo;
-					//SLEEP
-					tramas_mp3.accion4=0X0A;
-					tramas_mp3.cantidad7=0X00;
-					tramas_mp3.directory6=0x00;
-					sprintf(buffer_com, "%02d:%02d:%02d ---> 7E FF 06 %02X 00 %02X %02X EF \n", Hora.Horas, Hora.Minutos, Hora.Segundos, tramas_mp3.accion4, tramas_mp3.directory6, tramas_mp3.cantidad7);
-					osMessageQueuePut(cola_entrada, &buffer_com, 0U, 0U);
-					osMessageQueuePut(cola_entrada_MP3, &tramas_mp3, 0U, 0U);	
-					
-				}
-				
-				sprintf(msg_enviar_lcd.mensaje, "    HORA   Temp:%.1f C", tempLM.Ti);
-				msg_enviar_lcd.linea = 1;
-				osMessageQueuePut(lcd_Queue, &msg_enviar_lcd, 0U, 0U);
-				
-				sprintf(msg_enviar_lcd.mensaje, "     %02d:%02d:%02d",Hora_aux.Horas, Hora_aux.Minutos, Hora_aux.Segundos);
-				msg_enviar_lcd.linea = 2;
-				osMessageQueuePut(lcd_Queue, &msg_enviar_lcd, 0U, 0U);
-					
-					
-			}//switch
-	}//while
-				
-		osDelay(50);
-}//hilo
-
-
-void t_rep_callback(void *args){
-
-	Hora_t *tiempo=(Hora_t*) args;
-	if(tiempo->Segundos==59){
-		tiempo->Minutos++;
-		tiempo->Segundos = 0;
-	}
-	if(tiempo->Minutos==59){
-		tiempo->Minutos = 0;
-	}
-	tiempo->Segundos++;
+/*
+ * El ADC entrega peso 0-1000 g.
+ * Como la trama solo tiene uint8_t, se manda en decenas de gramos.
+ * Ejemplo: 540 g -> 54.
+ */
+static uint8_t Peso_To_U8(uint16_t peso_g)
+{
+  return Saturar_U8(peso_g / 10U);
 }
 
+/*
+ * Si más adelante medís consumo real, cambiar esta función.
+ * Ahora mismo consumo no se está calculando en ADC.c.
+ */
+static uint8_t Consumo_To_U8(uint16_t consumo)
+{
+  return Saturar_U8(consumo);
+}
 
+/*----------------------------------------------------------
+ * Inicialización principal
+ *---------------------------------------------------------*/
+
+int Init_ThPrincipal(void)
+{
+  if (Init_ThCom() != 0) {
+    return -1;
+  }
+
+  if (Init_ThPWM() != 0) {
+    return -1;
+  }
+
+  if (Init_ThPot() != 0) {
+    return -1;
+  }
+
+  if (Init_Thsensor() != 0) {
+    return -1;
+  }
+
+  if (Init_ThHum() != 0) {
+    return -1;
+  }
+
+  tid_ThPrincipal = osThreadNew(ThPrincipal, NULL, &attr_principal);
+
+  if (tid_ThPrincipal == NULL) {
+    return -1;
+  }
+
+  return 0;
+}
+
+/*----------------------------------------------------------
+ * Hilo principal
+ *---------------------------------------------------------*/
+
+static void ThPrincipal(void *argument)
+{
+  MSGQUEUE_Data_to_server_t trama_tx;
+  MSGQUEUE_Data_to_client_t trama_rx;
+
+  MSGQUEUE_POT_t pot_msg;
+  MSGQUEUE_SENS_t dist_msg;
+  MSGQUEUE_HUM_t hum_msg;
+  MSGQUEUE_PWM_t pwm_msg;
+
+  uint16_t peso_actual = 0;
+  uint16_t consumo_actual = 0;
+  uint16_t distancia_actual = DISTANCIA_ERROR_VALUE;
+  float humedad_actual = 0.0f;
+
+  uint8_t estado = ESTADO_OK;
+
+  /*
+   * Espera corta para que los hilos de los módulos creen sus colas.
+   * Sería más limpio crear todas las colas dentro de Init_ThXXX(),
+   * antes de crear los threads.
+   */
+  osDelay(200U);
+
+  while (1)
+  {
+    estado = ESTADO_OK;
+
+    /*--------------------------------------------
+     * 1. Recibir órdenes desde el servidor
+     *-------------------------------------------*/
+
+    if (cola_salida != NULL) {
+      while (osMessageQueueGet(cola_salida, &trama_rx, NULL, 0U) == osOK) {
+
+        if (trama_rx.dispensar != 0U) {
+          pwm_msg.duty = PWM_DISPENSAR_DUTY;
+
+          if (pwm_Queue != NULL) {
+            osMessageQueuePut(pwm_Queue, &pwm_msg, 0U, 0U);
+          }
+        }
+      }
+    }
+
+    /*--------------------------------------------
+     * 2. Leer última muestra de peso/consumo
+     *-------------------------------------------*/
+
+    if (pot_Queue != NULL) {
+      while (osMessageQueueGet(pot_Queue, &pot_msg, NULL, 0U) == osOK) {
+        peso_actual = pot_msg.peso;
+        consumo_actual = pot_msg.consumo;
+      }
+    }
+
+    /*--------------------------------------------
+     * 3. Leer última distancia
+     *-------------------------------------------*/
+
+    if (VL_Queue != NULL) {
+      while (osMessageQueueGet(VL_Queue, &dist_msg, NULL, 0U) == osOK) {
+        distancia_actual = dist_msg.Distancia;
+      }
+    }
+
+    if (distancia_actual == DISTANCIA_ERROR_VALUE) {
+      estado |= ESTADO_ERROR_DIST;
+    }
+
+    /*--------------------------------------------
+     * 4. Leer última humedad
+     *-------------------------------------------*/
+
+    if (hum_Queue != NULL) {
+      while (osMessageQueueGet(hum_Queue, &hum_msg, NULL, 0U) == osOK) {
+        humedad_actual = hum_msg.cmd;
+      }
+    }
+
+    if (BME280_IsInitialized() == 0U) {
+      estado |= ESTADO_ERROR_HUM;
+    }
+
+    /*--------------------------------------------
+     * 5. Preparar trama para el servidor
+     *-------------------------------------------*/
+
+    trama_tx.consumo   = Consumo_To_U8(consumo_actual);
+    trama_tx.Distancia = Distancia_To_U8(distancia_actual);
+    trama_tx.humedad   = Humedad_To_U8(humedad_actual);
+    trama_tx.peso      = Peso_To_U8(peso_actual);
+    trama_tx.Estado    = estado;
+    trama_tx.ack       = 0U;
+
+    /*--------------------------------------------
+     * 6. Enviar trama al módulo COM
+     *-------------------------------------------*/
+
+    if (cola_entrada != NULL) {
+      osMessageQueuePut(cola_entrada, &trama_tx, 0U, 0U);
+    }
+
+    osDelay(PRINCIPAL_PERIOD_MS);
+  }
+}

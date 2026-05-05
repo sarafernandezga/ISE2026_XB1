@@ -1,34 +1,10 @@
-#ifndef __Principal_H
-#define __Principal_H
+#ifndef __PRINCIPAL_H
+#define __PRINCIPAL_H
 
 #include "stm32f4xx_hal.h"
 #include "cmsis_os2.h"
-#include <stdio.h>
-#include <string.h>
 #include <stdint.h>
 
-#include "com.h"
-
-#include "PWM.h"
-#include "leds_N.h"
-
-
-typedef enum{
-	Reposo,
-	Reproduccion,
-	Programacion
-	
-}Estado_LCD;
-
-typedef enum{
-	HORAS,
-	MINUTOS,
-	SEGUNDOS
-	
-}Estado_programacion_t;
-
-
-
-int Init_ThPrincipal (void);      // Funcion de creacion e inicializacion del thread asociado al Principal
+int Init_ThPrincipal(void);
 
 #endif

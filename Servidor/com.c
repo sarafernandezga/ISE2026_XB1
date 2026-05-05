@@ -98,11 +98,11 @@ void ThControlComRecepcion(void *argument) {
 			if(cmd == EOT){
 					
 				bufferDatos[index]=EOT;
-				Data_to_server.humedad 	 =  bufferDatos[1];
+				Data_to_server.consumo 	 =  bufferDatos[1];
 				Data_to_server.Distancia =  bufferDatos[2];
-				Data_to_server.Estado 	 =	bufferDatos[3];
-				Data_to_server.consumo   =	bufferDatos[4];
-				Data_to_server.peso 	   =  bufferDatos[5];
+				Data_to_server.humedad 	 =	bufferDatos[3];
+				Data_to_server.peso   =	bufferDatos[4];
+				Data_to_server.Estado 	   =  bufferDatos[5];
 				Data_to_server.ack			 =	bufferDatos[6];
 				osMessageQueuePut(cola_salida, &Data_to_server, NULL, 0U);
 				index=0;
@@ -140,7 +140,7 @@ void ThControlComTransmision (void* argument){
 		buffer_datos_entrada[1] = Data_to_client.dispensar;
 		buffer_datos_entrada[2] = ack;
 		buffer_datos_entrada[3] = EOT;		
-		USARTdrv->Send(buffer_datos_entrada, strlen(buffer_datos_entrada)); 
+		USARTdrv->Send(buffer_datos_entrada, 4); 
 		ack = 0;
 		osThreadFlagsWait(Flag_Recibido2, osFlagsWaitAny, osWaitForever);
 		

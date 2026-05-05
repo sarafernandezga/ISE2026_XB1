@@ -10,13 +10,14 @@
 #include "main.h"
 #include "rl_net.h"                     // Keil.MDK-Pro::Network:CORE
 #include "lcd.h"
-#include "pot.h"
 #include "rtc.h"
 #include "sntp.h"
 #include "cmsis_os2.h"
 #include <string.h>
 #include "stm32f4xx_hal.h"              // Keil::Device:STM32Cube HAL:Common
 #include "Board_Buttons.h"              // ::Board Support:Buttons
+#include "PrincipalServidor.h"
+
 
 // Main stack size must be multiple of 8 Bytes
 #define APP_MAIN_STK_SZ (1024U)
@@ -81,7 +82,7 @@ __NO_RETURN void app_main (void *arg) {
   netInitialize ();
 
   Init_ThLCD();
-  Init_ThPot();
+	Init_ThPrincipalServidor();
   
   tid_rtc_lcd = osThreadNew(RTC_LCD_Thread, NULL, NULL);
   SNTP_Init();

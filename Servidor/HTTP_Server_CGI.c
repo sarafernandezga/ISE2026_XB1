@@ -14,8 +14,8 @@
 #include "rl_net.h"                     // Keil.MDK-Pro::Network:CORE
 #include "main.h"
 #include "lcd.h"
-#include "pot.h"
 #include "rtc.h"
+#include "PrincipalServidor.h"
 
 #include "Board_LED.h"                  // ::Board Support:LED
 
@@ -38,7 +38,6 @@ LCD_t mensaje_lcd;
 
 extern osMessageQueueId_t      pot_Queue;
 
-MSGQUEUE_POT_t valor_pot;
 
 // Local variables.
 static uint8_t P2;
@@ -107,6 +106,30 @@ void netCGI_ProcessQuery (const char *qstr) {
   } while (qstr);
 }
 
+
+
+static int ParseHoraMinuto(const char *str, uint8_t *h, uint8_t *m)
+{
+  int hh = 0;
+  int mm = 0;
+
+  if (str == NULL || h == NULL || m == NULL) {
+    return 0;
+  }
+
+  if (sscanf(str, "%d:%d", &hh, &mm) == 2) {
+    if ((hh >= 0) && (hh < 24) && (mm >= 0) && (mm < 60)) {
+      *h = (uint8_t)hh;
+      *m = (uint8_t)mm;
+      return 1;
+    }
+  }
+
+  return 0;
+}
+
+
+
 // Process data received by POST request.
 // Type code: - 0 = www-url-encoded form data.
 //            - 1 = filename for file upload (null-terminated string).
@@ -121,6 +144,8 @@ void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
     // Ignore all other codes
     return;
   }
+	
+	PrincipalServidor_SetAuto(0U);
 
   P2 = 0;
 //  LEDrun = true;
@@ -203,6 +228,23 @@ void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
 //        strcpy (mensaje_lcd.mensaje, var+5);
 //        osMessageQueuePut(lcd_Queue, &mensaje_lcd, 0U, 0U);
 //        osThreadFlagsSet (TID_Display, 0x01);
+      }      else if (strcmp(var, "dispensar=Dispensar+ahora") == 0) {
+        PrincipalServidor_DispensarManual();
+      }/////COMEDERO
+      else if (strcmp(var, "auto=on") == 0) {
+        PrincipalServidor_SetAuto(1U);
+      }
+      else if (strncmp(var, "hora1=", 6) == 0) {
+        uint8_t h, m;
+        if (ParseHoraMinuto(var + 6, &h, &m)) {
+          PrincipalServidor_SetHora1(h, m);
+        }
+      }
+      else if (strncmp(var, "hora2=", 6) == 0) {
+        uint8_t h, m;
+        if (ParseHoraMinuto(var + 6, &h, &m)) {
+          PrincipalServidor_SetHora2(h, m);
+        }
       }
     }
   } while (data);
@@ -218,7 +260,6 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
   const char *lang;
   uint32_t len = 0U;
   uint8_t id;
-  static uint32_t adv;
   netIF_Option opt = netIF_OptionMAC_Address;
   int16_t      typ = 0;
 
@@ -269,6 +310,78 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
           if (env[3] == '4') { opt = netIF_OptionIP4_SecondaryDNS; }
           else               { opt = netIF_OptionIP6_SecondaryDNS; }
           break;
+		    case 'z':
+				{
+					SERVIDOR_DATOS_t datos;
+					uint8_t h1, m1, h2, m2;
+					char tmp[64];
+
+					datos = PrincipalServidor_GetDatos();
+
+					switch (env[2]) {
+
+						case '1':
+							len = (uint32_t)sprintf(buf, &env[4], RTC_GetTimeString());
+							break;
+
+						case '2':
+							len = (uint32_t)sprintf(buf, &env[4], RTC_GetDateString());
+							break;
+
+						case '3':
+							/*
+							* El cliente manda peso / 10.
+							* Por tanto, recuperamos gramos multiplicando por 10.
+							*/
+							snprintf(tmp, sizeof(tmp), "%u g", (unsigned int)datos.peso * 10U);
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+
+						case '4':
+							snprintf(tmp, sizeof(tmp), "%u %%", (unsigned int)datos.humedad);
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+
+						case '5':
+							if (datos.distancia == 255U) {
+								snprintf(tmp, sizeof(tmp), "Error sensor");
+							} else {
+								snprintf(tmp, sizeof(tmp), "%u cm", (unsigned int)datos.distancia);
+							}
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+
+						case '6':
+							snprintf(tmp, sizeof(tmp), "%u", (unsigned int)datos.consumo);
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+
+						case '7':
+							len = (uint32_t)sprintf(buf, &env[4], PrincipalServidor_GetEstadoTexto());
+							break;
+
+						case '8':
+							len = (uint32_t)sprintf(buf, &env[4], PrincipalServidor_GetAlertaTexto());
+							break;
+
+						case '9':
+							len = (uint32_t)sprintf(buf, &env[4], PrincipalServidor_GetAuto() ? "checked" : "");
+							break;
+
+						case 'a':
+							PrincipalServidor_GetHora1(&h1, &m1);
+							snprintf(tmp, sizeof(tmp), "%02u:%02u", h1, m1);
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+
+						case 'b':
+							PrincipalServidor_GetHora2(&h2, &m2);
+							snprintf(tmp, sizeof(tmp), "%02u:%02u", h2, m2);
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+					}
+					break;
+				}
       }
 
       netIF_GetOption (NET_IF_CLASS_ETH, opt, ip_addr, sizeof(ip_addr));
@@ -381,27 +494,11 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
 
     case 'g':
       // AD Input from 'ad.cgi'
-      switch (env[2]) {
-        case '1':
-          osMessageQueueGet(pot_Queue, &valor_pot, 0U, 0U);
-          adv = valor_pot.Ta;
-          len = (uint32_t)sprintf (buf, &env[4], adv);
-          break;
-        case '2':
-          len = (uint32_t)sprintf (buf, &env[4], (double)((float)adv*3.3f)/4096);
-          break;
-        case '3':
-          adv = (adv * 100) / 4096;
-          len = (uint32_t)sprintf (buf, &env[4], adv);
-          break;
-      }
       break;
 
     case 'x':
       // AD Input from 'ad.cgx'
-    osMessageQueueGet(pot_Queue, &valor_pot, 0U, 0U);
-      adv = valor_pot.Ta;
-      len = (uint32_t)sprintf (buf, &env[1], adv);
+
       break;
 
     case 'y':

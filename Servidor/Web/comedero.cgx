@@ -1,0 +1,27 @@
+t <form>
+t <text><id>hora</id><value>
+c z 1 %s
+t </value></text>
+t <text><id>fecha</id><value>
+c z 2 %s
+t </value></text>
+t <text><id>peso</id><value>
+c z 3 %s
+t </value></text>
+t <text><id>humedad</id><value>
+c z 4 %s
+t </value></text>
+t <text><id>distancia</id><value>
+c z 5 %s
+t </value></text>
+t <text><id>consumo</id><value>
+c z 6 %s
+t </value></text>
+t <text><id>estado</id><value>
+c z 7 %s
+t </value></text>
+t <text><id>alerta</id><value>
+c z 8 %s
+t </value></text>
+t </form>
+.

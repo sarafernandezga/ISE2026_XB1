@@ -18,5 +18,7 @@ logo.gif,
 llblue.jpg,
 pabb.gif,
 rtc.cgi,
-rtc.cgx 
+rtc.cgx,
+comedero.cgi,
+comedero.cgx 
 TO Web.c RTE NOPRINT ROOT(Web)

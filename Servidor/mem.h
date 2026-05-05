@@ -1,25 +1,30 @@
-#ifndef __MEM_H
-#define __MEM_H
+#ifndef MEM_H
+#define MEM_H
 
-#include "stm32f4xx_hal.h"
 #include "cmsis_os2.h"
 #include <stdint.h>
-#include "Driver_I2C.h"
 
-// Registro del LM75
-#define LM75_TEMP_REG      0x52
+// Definiciones para la memoria
+#define AT24C_ADDR 0x50 
 
-// Direcciones I2C
-#define LM75_INT_ADDR      0x48   // Sensor interior
+// Tipos de operaciones permitidas
+typedef enum {
+    EEPROM_OP_READ = 0,
+    EEPROM_OP_WRITE = 1
+} EEPROM_OpType_t;
 
-#define MSGQUEUE_SENS_OBJECTS  1
-
+// Estructura del mensaje para la cola
 typedef struct {
-  float Ti;   // Temperatura interior
-} MSGQUEUE_SENS_t;
+    EEPROM_OpType_t op_type; // Operación: Leer o Escribir
+    uint16_t mem_addr;       // Dirección de memoria interna (ej. 0x0000 a 0x3FFF)
+    uint8_t *data_ptr;       // Puntero al buffer de datos (origen para TX, destino para RX)
+    uint32_t length;         // Cantidad de bytes a transferir
+} MSGQUEUE_EEPROM_t;
 
-extern osMessageQueueId_t sens_Queue;
+// Tamaño de la cola (cuántas peticiones simultáneas puede encolar)
+#define MSGQUEUE_EEPROM_OBJECTS 4
 
-int Init_Thsensor (void);
+// Funciones públicas
+int Init_ThEEPROM(void);
 
-#endif
+#endif /* MEM_H */

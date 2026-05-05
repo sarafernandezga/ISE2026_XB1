@@ -12,11 +12,6 @@
 
 osThreadId_t tid_ThPrincipal;
 
-static const osThreadAttr_t attr_principal = {
-  .name = "Principal_Cliente",
-  .stack_size = 1024,
-  .priority = osPriorityNormal
-};
 
 static void ThPrincipal(void *argument);
 
@@ -109,7 +104,7 @@ int Init_ThPrincipal(void)
     return -1;
   }
 
-  tid_ThPrincipal = osThreadNew(ThPrincipal, NULL, &attr_principal);
+  tid_ThPrincipal = osThreadNew(ThPrincipal, NULL, NULL);
 
   if (tid_ThPrincipal == NULL) {
     return -1;

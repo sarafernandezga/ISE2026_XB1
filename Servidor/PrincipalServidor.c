@@ -3,6 +3,7 @@
 #include "COM.h"
 #include "lcd.h"
 #include "rtc.h"
+#include "mem.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -36,6 +37,18 @@ static void ThPrincipalServidor(void *argument);
 #define DEPOSITO_BAJO_CM          20U
 #define PESO_BAJO_DECIGRAMOS      5U     /* 5 equivale a 50 g si el cliente manda peso/10 */
 
+//MEMORIA
+#define EEPROM_ADDR_CONFIG      0x0000
+#define EEPROM_CONFIG_MAGIC     0xA5
+
+typedef struct {
+  uint8_t magic;
+  uint8_t auto_enable;
+  uint8_t hora1_h;
+  uint8_t hora1_m;
+  uint8_t hora2_h;
+  uint8_t hora2_m;
+} EEPROM_CONFIG_t;
 /*----------------------------------------------------------
  * Variables globales internas
  *---------------------------------------------------------*/
@@ -59,6 +72,9 @@ static char alerta_txt[96];
 /* Para evitar dispensar muchas veces dentro del mismo minuto */
 static int8_t ultima_hora_auto = -1;
 static int8_t ultimo_min_auto  = -1;
+
+static void EEPROM_CargarConfig(void);
+static void EEPROM_GuardarConfig(void);
 
 /*----------------------------------------------------------
  * Funciones auxiliares
@@ -121,6 +137,9 @@ int Init_ThPrincipalServidor(void)
   if (Init_ThCom() != 0) {
     return -1;
   }
+	if (Init_ThEEPROM() != 0) {
+		return -1;
+	}
 
   tid_ThPrincipalServidor = osThreadNew(ThPrincipalServidor, NULL, &attr_principal_servidor);
 
@@ -146,6 +165,8 @@ static void ThPrincipalServidor(void *argument)
    */
   osDelay(300U);
 
+	EEPROM_CargarConfig();
+	
   while (1)
   {
     /*--------------------------------------------
@@ -205,6 +226,7 @@ void PrincipalServidor_DispensarManual(void)
 void PrincipalServidor_SetAuto(uint8_t enable)
 {
   config_actual.auto_enable = enable ? 1U : 0U;
+	EEPROM_GuardarConfig();
 }
 
 uint8_t PrincipalServidor_GetAuto(void)
@@ -217,6 +239,7 @@ void PrincipalServidor_SetHora1(uint8_t h, uint8_t m)
   if (h < 24U && m < 60U) {
     config_actual.hora1_h = h;
     config_actual.hora1_m = m;
+		EEPROM_GuardarConfig();
   }
 }
 
@@ -225,6 +248,7 @@ void PrincipalServidor_SetHora2(uint8_t h, uint8_t m)
   if (h < 24U && m < 60U) {
     config_actual.hora2_h = h;
     config_actual.hora2_m = m;
+		EEPROM_GuardarConfig();
   }
 }
 
@@ -285,3 +309,64 @@ const char *PrincipalServidor_GetAlertaTexto(void)
 
   return alerta_txt;
 }
+
+static void EEPROM_GuardarConfig(void)
+{
+  static EEPROM_CONFIG_t eeprom_cfg;
+  MSGQUEUE_EEPROM_t msg;
+
+  if (EEPROM_Queue_R == NULL) {
+    return;
+  }
+
+  eeprom_cfg.magic       = EEPROM_CONFIG_MAGIC;
+  eeprom_cfg.auto_enable = config_actual.auto_enable;
+  eeprom_cfg.hora1_h     = config_actual.hora1_h;
+  eeprom_cfg.hora1_m     = config_actual.hora1_m;
+  eeprom_cfg.hora2_h     = config_actual.hora2_h;
+  eeprom_cfg.hora2_m     = config_actual.hora2_m;
+
+  msg.op_type  = EEPROM_OP_WRITE;
+  msg.mem_addr = EEPROM_ADDR_CONFIG;
+  msg.data_ptr = (uint8_t *)&eeprom_cfg;
+  msg.length   = sizeof(eeprom_cfg);
+
+  osMessageQueuePut(EEPROM_Queue_R, &msg, 0U, 0U);
+}
+
+
+static void EEPROM_CargarConfig(void)
+{
+  static EEPROM_CONFIG_t eeprom_cfg;
+  MSGQUEUE_EEPROM_t msg;
+
+  if ((EEPROM_Queue_R == NULL) || (EEPROM_Queue_S == NULL)) {
+    return;
+  }
+
+  memset(&eeprom_cfg, 0, sizeof(eeprom_cfg));
+
+  msg.op_type  = EEPROM_OP_READ;
+  msg.mem_addr = EEPROM_ADDR_CONFIG;
+  msg.data_ptr = (uint8_t *)&eeprom_cfg;
+  msg.length   = sizeof(eeprom_cfg);
+
+  osMessageQueuePut(EEPROM_Queue_R, &msg, 0U, 0U);
+
+  if (osMessageQueueGet(EEPROM_Queue_S, &msg, NULL, 200U) == osOK) {
+
+    if (eeprom_cfg.magic == EEPROM_CONFIG_MAGIC) {
+
+      if (eeprom_cfg.hora1_h < 24U && eeprom_cfg.hora1_m < 60U &&
+          eeprom_cfg.hora2_h < 24U && eeprom_cfg.hora2_m < 60U) {
+
+        config_actual.auto_enable = eeprom_cfg.auto_enable ? 1U : 0U;
+        config_actual.hora1_h     = eeprom_cfg.hora1_h;
+        config_actual.hora1_m     = eeprom_cfg.hora1_m;
+        config_actual.hora2_h     = eeprom_cfg.hora2_h;
+        config_actual.hora2_m     = eeprom_cfg.hora2_m;
+      }
+    }
+  }
+}
+

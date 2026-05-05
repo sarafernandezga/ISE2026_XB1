@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\P6E3.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\P6E3.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Tue May  5 10:18:54 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6160001: Last Updated: Tue May  5 13:32:35 2026
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -281,7 +281,7 @@ Global Symbols
 
 <P><STRONG><a name="[c1]"></a>__rt_lib_init_heap_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000005))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88 + Unknown Stack Size
-<LI>Call Chain = __rt_lib_init_heap_2 &rArr; _init_alloc &rArr; __Heap_ProvideMemory &rArr; free_internal$concurrent &rArr; _mutex_release &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
+<LI>Call Chain = __rt_lib_init_heap_2 &rArr; _init_alloc &rArr; __Heap_ProvideMemory &rArr; free_internal$concurrent &rArr; _mutex_acquire &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
 </UL>
@@ -910,9 +910,9 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 128 + Unknown Stack Size
 <LI>Call Chain = _terminateio &rArr; _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_free
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fclose_internal
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 </UL>
@@ -982,8 +982,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[103]"></a>malloc_internal$concurrent</STRONG> (Thumb, 130 bytes, Stack size 24 bytes, h1_alloc_threads.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<BR><BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Heap1_SizeAdjust
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Full
 </UL>
@@ -999,17 +999,17 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[106]"></a>free_internal$concurrent</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, h1_free_threads.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = free_internal$concurrent &rArr; _mutex_release &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = free_internal$concurrent &rArr; _mutex_acquire &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_ProvideMemory
 </UL>
 
 <P><STRONG><a name="[fd]"></a>free</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, h1_free_threads.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = free &rArr; free_internal$concurrent &rArr; _mutex_release &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = free &rArr; free_internal$concurrent &rArr; _mutex_acquire &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
 </UL>
 <BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free_internal$concurrent
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_heap_descriptor
@@ -1022,8 +1022,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 112 + Unknown Stack Size
 <LI>Call Chain = _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
 <BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
@@ -1077,20 +1077,20 @@ Global Symbols
 <P><STRONG><a name="[2fd]"></a>fclose</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, fclose.o(.text), UNUSED)
 
 <P><STRONG><a name="[10b]"></a>puts</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, puts_locked.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = puts &rArr; _mutex_release &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = puts &rArr; _mutex_acquire &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fputc$unlocked
 </UL>
 <BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThControlsensor
 </UL>
 
 <P><STRONG><a name="[fb]"></a>setvbuf</STRONG> (Thumb, 104 bytes, Stack size 32 bytes, setvbuf_locked.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = setvbuf &rArr; _mutex_release &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = setvbuf &rArr; _mutex_acquire &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio
 </UL>
@@ -1099,17 +1099,17 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = freopen &rArr; _freopen_locked &rArr; _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_freopen_locked
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio
 </UL>
 
 <P><STRONG><a name="[10e]"></a>_fopen$locked</STRONG> (Thumb, 100 bytes, Stack size 24 bytes, fopen_locked.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
+<BR><BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_initialize
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_freopen_locked
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
@@ -1175,7 +1175,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c2]"></a>_init_alloc</STRONG> (Thumb, 94 bytes, Stack size 24 bytes, init_alloc.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = _init_alloc &rArr; __Heap_ProvideMemory &rArr; free_internal$concurrent &rArr; _mutex_release &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = _init_alloc &rArr; __Heap_ProvideMemory &rArr; free_internal$concurrent &rArr; _mutex_acquire &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
 </UL>
 <BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_ProvideMemory
@@ -1237,7 +1237,7 @@ Global Symbols
 <P><STRONG><a name="[307]"></a>_maybe_terminate_alloc</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, maybetermalloc2.o(.text), UNUSED)
 
 <P><STRONG><a name="[112]"></a>__Heap_ProvideMemory</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, h1_extend_threads.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = __Heap_ProvideMemory &rArr; free_internal$concurrent &rArr; _mutex_release &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = __Heap_ProvideMemory &rArr; free_internal$concurrent &rArr; _mutex_acquire &rArr; os_kernel_is_active &rArr; osKernelGetState &rArr; svcRtxKernelGetState
 </UL>
 <BR>[Calls]<UL><LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free_internal$concurrent
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AlignUpOffset
@@ -2158,7 +2158,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_ThPrincipal
 </UL>
 
-<P><STRONG><a name="[183]"></a>Init_ThHum</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, spih.o(.text.Init_ThHum))
+<P><STRONG><a name="[183]"></a>Init_ThHum</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, spih.o(.text.Init_ThHum))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = Init_ThHum &rArr; osThreadNew
 </UL>
 <BR>[Calls]<UL><LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadNew
@@ -2187,7 +2187,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_ThPrincipal
 </UL>
 
-<P><STRONG><a name="[189]"></a>Init_ThPrincipal</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, principal.o(.text.Init_ThPrincipal))
+<P><STRONG><a name="[189]"></a>Init_ThPrincipal</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, principal.o(.text.Init_ThPrincipal))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Init_ThPrincipal &rArr; Init_ThPWM &rArr; MX_TIM1_PWM_Init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Init_Thsensor
@@ -2919,10 +2919,10 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[231]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxErrorNotify
 <LI><a href="#[234]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EvrRtxKernelErrorNotify
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPostProcess
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perthread_libspace
+<LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxPostProcess
 <LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osRtxTimerTick
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_initialize
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perthread_libspace
 </UL>
 
 <P><STRONG><a name="[221]"></a>osRtxKernelPreInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, rtx_kernel.o(.text.osRtxKernelPreInit))
@@ -4095,9 +4095,9 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelGetState
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perthread_libspace
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
 </UL>
 
 <P><STRONG><a name="[237]"></a>MemBlockPtr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, rtx_memory.o(.text.MemBlockPtr))
@@ -5435,8 +5435,8 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 136 + Unknown Stack Size
 <LI>Call Chain = _freopen_locked &rArr; _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_acquire
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_mutex_release
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fclose_internal
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fseek

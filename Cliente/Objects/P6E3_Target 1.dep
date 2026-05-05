@@ -171,7 +171,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\Include\cm
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x6035F908)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 F (.\leds_N.h)(0x693E93C2)()
-F (.\Principal.c)(0x69F9A6DA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/principal.o -MD)
+F (.\Principal.c)(0x69F9D49B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/principal.o -MD)
 I (..\Cliente\Principal.h)(0x69F9A6DA)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x5F6B26D6)
 I (RTE\Device\STM32F429ZITx\stm32f4xx_hal_conf.h)(0x5F6D8F2C)
@@ -260,7 +260,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM3
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_usart.h)(0x5F6B26D6)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\Include\cmsis_os2.h)(0x60D43D42)
 F (.\PWM.h)(0x6859183E)()
-F (.\adc.c)(0x69F9A06C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/adc.o -MD)
+F (.\adc.c)(0x69F9D4E7)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/adc.o -MD)
 I (..\Cliente\adc.h)(0x69F9A06C)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x5F6B26D6)
 I (RTE\Device\STM32F429ZITx\stm32f4xx_hal_conf.h)(0x5F6D8F2C)
@@ -335,7 +335,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSI
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\Include\cmsis_os2.h)(0x60D43D42)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x6035F908)
 F (.\VL53L0X.h)(0x69F9A06C)()
-F (.\spih.c)(0x69DF871B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/spih.o -MD)
+F (.\spih.c)(0x69F9D4BD)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/spih.o -MD)
 I (..\Cliente\spih.h)(0x69DF871B)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\Include\cmsis_os2.h)(0x60D43D42)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6035F908)
@@ -385,7 +385,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_core_c.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5F6B2636)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x5F6B2636)
@@ -408,7 +408,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_core_c.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5F6B2636)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x5F6B2636)
@@ -437,13 +437,13 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\Include\cmsis_os2.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 F (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_kernel.c)(0x60D43D42)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/rtx_kernel.o -MD)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_lib.h)(0x60D43D42)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_core_c.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5F6B2636)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x5F6B2636)
@@ -470,14 +470,14 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\Include\cmsis_os2.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_evr.h)(0x60D43D42)
 F (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_memory.c)(0x60D43D42)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/rtx_memory.o -MD)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_lib.h)(0x60D43D42)
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_core_c.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5F6B2636)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x5F6B2636)
@@ -500,7 +500,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_core_c.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5F6B2636)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x5F6B2636)
@@ -523,7 +523,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_core_c.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5F6B2636)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x5F6B2636)
@@ -546,7 +546,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_core_c.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5F6B2636)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x5F6B2636)
@@ -569,7 +569,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_core_c.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5F6B2636)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x5F6B2636)
@@ -592,7 +592,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_core_c.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5F6B2636)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x5F6B2636)
@@ -615,7 +615,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_core_c.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5F6B2636)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x5F6B2636)
@@ -638,7 +638,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source
 I (C:\Keil_v5\ARM\ARMCLANG\include\string.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Source\rtx_core_c.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5F6B2636)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f429xx.h)(0x5F6B2636)
@@ -677,8 +677,8 @@ I (C:\Keil_v5\ARM\ARMCLANG\include\stddef.h)(0x6035F908)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\Include\cmsis_os2.h)(0x60D43D42)
 I (C:\Users\marco\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\RTOS2\RTX\Include\rtx_def.h)(0x60D43D42)
 I (RTE\_Target_1\RTE_Components.h)(0x693C553F)
-I (RTE\CMSIS\RTX_Config.h)(0x60D43D42)
-F (RTE\CMSIS\RTX_Config.h)(0x60D43D42)()
+I (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)
+F (RTE\CMSIS\RTX_Config.h)(0x69F9D54E)()
 F (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\CMSIS\Driver\I2C_STM32F4xx.c)(0x5F5721FA)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/i2c_stm32f4xx.o -MD)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\CMSIS\Driver\I2C_STM32F4xx.h)(0x5D36EA88)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6035F908)
@@ -720,7 +720,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM3
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h)(0x5F6B26D6)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h)(0x5F6B26D6)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_usart.h)(0x5F6B26D6)
-I (RTE\Device\STM32F429ZITx\RTE_Device.h)(0x693C4B94)
+I (RTE\Device\STM32F429ZITx\RTE_Device.h)(0x69F9CC09)
 F (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\CMSIS\Driver\SPI_STM32F4xx.c)(0x5EAFBD9A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/spi_stm32f4xx.o -MD)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\CMSIS\Driver\SPI_STM32F4xx.h)(0x5EAFBD9A)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6035F908)
@@ -762,7 +762,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM3
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h)(0x5F6B26D6)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h)(0x5F6B26D6)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_usart.h)(0x5F6B26D6)
-I (RTE\Device\STM32F429ZITx\RTE_Device.h)(0x693C4B94)
+I (RTE\Device\STM32F429ZITx\RTE_Device.h)(0x69F9CC09)
 F (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\CMSIS\Driver\USART_STM32F4xx.c)(0x5D9712DE)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/usart_stm32f4xx.o -MD)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\CMSIS\Driver\USART_STM32F4xx.h)(0x5D36EA88)
 I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x6035F908)
@@ -804,7 +804,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM3
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h)(0x5F6B26D6)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h)(0x5F6B26D6)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_usart.h)(0x5F6B26D6)
-I (RTE\Device\STM32F429ZITx\RTE_Device.h)(0x693C4B94)
+I (RTE\Device\STM32F429ZITx\RTE_Device.h)(0x69F9CC09)
 F (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.c)(0x5F6B26D6)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/stm32f4xx_hal.o -MD)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal.h)(0x5F6B26D6)
 I (RTE\Device\STM32F429ZITx\stm32f4xx_hal_conf.h)(0x5F6D8F2C)
@@ -1417,7 +1417,7 @@ I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM3
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim.h)(0x5F6B26D6)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_tim_ex.h)(0x5F6B26D6)
 I (C:\Users\marco\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\STM32F4xx_HAL_Driver\Inc\stm32f4xx_hal_usart.h)(0x5F6B26D6)
-F (RTE\Device\STM32F429ZITx\RTE_Device.h)(0x693C4B94)()
+F (RTE\Device\STM32F429ZITx\RTE_Device.h)(0x69F9CC09)()
 F (RTE\Device\STM32F429ZITx\startup_stm32f429xx.s)(0x67577EBA)(--target=armv7em-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -masm=auto -c-gdwarf-3 -Wa,armasm,--pd,"__RTX SETA 1"-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-Wa,armasm,--pd,"__UVISION_VERSION SETA 534" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"STM32F429xx SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ./objects/startup_stm32f429xx.o)
 F (RTE\Device\STM32F429ZITx\stm32f4xx_hal_conf.h)(0x5F6D8F2C)()
 F (RTE\Device\STM32F429ZITx\system_stm32f4xx.c)(0x5F6B2636)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=none -mfloat-abi=soft -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__RTX -gdwarf-3 -O1 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -I ../Cliente-I./RTE/CMSIS-I./RTE/Device/STM32F429ZITx-I./RTE/_Target_1-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Core/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/Driver/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/Include-IC:/Users/marco/AppData/Local/Arm/Packs/ARM/CMSIS/5.8.0/CMSIS/RTOS2/RTX/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include-IC:/Users/marco/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.15.0/Drivers/STM32F4xx_HAL_Driver/Inc-D__UVISION_VERSION="534" -D_RTE_ -DSTM32F429xx -D_RTE_ -DHSE_VALUE="8000000"-o ./objects/system_stm32f4xx.o -MD)

@@ -19,9 +19,6 @@ osEventFlagsId_t busyEventFlag;
 static void busy(uint32_t event);
 
 /* Atributos del hilo */
-const osThreadAttr_t threadHum_attr = {
-  .stack_size = 1024
-};
 
 /* Mensajes */
 MSGQUEUE_HUM_t hum_msg_rec;
@@ -40,7 +37,7 @@ static uint8_t spi_rx[32];
 
 int Init_ThHum (void)
 {
-  tid_ThHum = osThreadNew(ThHum, NULL, &threadHum_attr);
+  tid_ThHum = osThreadNew(ThHum, NULL, NULL);
   hum_Queue = osMessageQueueNew(4, sizeof(MSGQUEUE_HUM_t), NULL);
 
   if (tid_ThHum == NULL) {

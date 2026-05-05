@@ -27,4 +27,7 @@ typedef struct {
 // Funciones públicas
 int Init_ThEEPROM(void);
 
+extern osMessageQueueId_t EEPROM_Queue_R;
+extern osMessageQueueId_t EEPROM_Queue_S;
+
 #endif /* MEM_H */

@@ -6,7 +6,7 @@ osMessageQueueId_t      pot_Queue;
 
 
 static const osThreadAttr_t thread_attr_pot = {
-  .stack_size = 256
+  .stack_size = 512
 };
 
 // ADC – Configuración (ADC1, canales 3 y 10)

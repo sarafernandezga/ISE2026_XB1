@@ -546,21 +546,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Potenciometro</GroupName>
-          <Files>
-            <File>
-              <FileName>pot.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\pot.c</FilePath>
-            </File>
-            <File>
-              <FileName>pot.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\pot.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>RTC</GroupName>
           <Files>
             <File>

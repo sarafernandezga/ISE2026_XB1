@@ -310,78 +310,7 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
           if (env[3] == '4') { opt = netIF_OptionIP4_SecondaryDNS; }
           else               { opt = netIF_OptionIP6_SecondaryDNS; }
           break;
-		    case 'z':
-				{
-					SERVIDOR_DATOS_t datos;
-					uint8_t h1, m1, h2, m2;
-					char tmp[64];
-
-					datos = PrincipalServidor_GetDatos();
-
-					switch (env[2]) {
-
-						case '1':
-							len = (uint32_t)sprintf(buf, &env[4], RTC_GetTimeString());
-							break;
-
-						case '2':
-							len = (uint32_t)sprintf(buf, &env[4], RTC_GetDateString());
-							break;
-
-						case '3':
-							/*
-							* El cliente manda peso / 10.
-							* Por tanto, recuperamos gramos multiplicando por 10.
-							*/
-							snprintf(tmp, sizeof(tmp), "%u g", (unsigned int)datos.peso * 10U);
-							len = (uint32_t)sprintf(buf, &env[4], tmp);
-							break;
-
-						case '4':
-							snprintf(tmp, sizeof(tmp), "%u %%", (unsigned int)datos.humedad);
-							len = (uint32_t)sprintf(buf, &env[4], tmp);
-							break;
-
-						case '5':
-							if (datos.distancia == 255U) {
-								snprintf(tmp, sizeof(tmp), "Error sensor");
-							} else {
-								snprintf(tmp, sizeof(tmp), "%u cm", (unsigned int)datos.distancia);
-							}
-							len = (uint32_t)sprintf(buf, &env[4], tmp);
-							break;
-
-						case '6':
-							snprintf(tmp, sizeof(tmp), "%u", (unsigned int)datos.consumo);
-							len = (uint32_t)sprintf(buf, &env[4], tmp);
-							break;
-
-						case '7':
-							len = (uint32_t)sprintf(buf, &env[4], PrincipalServidor_GetEstadoTexto());
-							break;
-
-						case '8':
-							len = (uint32_t)sprintf(buf, &env[4], PrincipalServidor_GetAlertaTexto());
-							break;
-
-						case '9':
-							len = (uint32_t)sprintf(buf, &env[4], PrincipalServidor_GetAuto() ? "checked" : "");
-							break;
-
-						case 'a':
-							PrincipalServidor_GetHora1(&h1, &m1);
-							snprintf(tmp, sizeof(tmp), "%02u:%02u", h1, m1);
-							len = (uint32_t)sprintf(buf, &env[4], tmp);
-							break;
-
-						case 'b':
-							PrincipalServidor_GetHora2(&h2, &m2);
-							snprintf(tmp, sizeof(tmp), "%02u:%02u", h2, m2);
-							len = (uint32_t)sprintf(buf, &env[4], tmp);
-							break;
-					}
-					break;
-				}
+		    
       }
 
       netIF_GetOption (NET_IF_CLASS_ETH, opt, ip_addr, sizeof(ip_addr));
@@ -518,6 +447,78 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
           break;
       }
       break;
+		case 'z'://///////////COMEDERO///////////////
+				{
+					SERVIDOR_DATOS_t datos;
+					uint8_t h1, m1, h2, m2;
+					char tmp[64];
+
+					datos = PrincipalServidor_GetDatos();
+
+					switch (env[2]) {
+
+						case '1':
+							len = (uint32_t)sprintf(buf, &env[4], RTC_GetTimeString());
+							break;
+
+						case '2':
+							len = (uint32_t)sprintf(buf, &env[4], RTC_GetDateString());
+							break;
+
+						case '3':
+							/*
+							* El cliente manda peso / 10.
+							* Por tanto, recuperamos gramos multiplicando por 10.
+							*/
+							snprintf(tmp, sizeof(tmp), "%u g", (unsigned int)datos.peso * 10U);
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+
+						case '4':
+							snprintf(tmp, sizeof(tmp), "%u %%", (unsigned int)datos.humedad);
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+
+						case '5':
+							if (datos.distancia == 255U) {
+								snprintf(tmp, sizeof(tmp), "Error sensor");
+							} else {
+								snprintf(tmp, sizeof(tmp), "%u cm", (unsigned int)datos.distancia);
+							}
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+
+						case '6':
+							snprintf(tmp, sizeof(tmp), "%u", (unsigned int)datos.consumo);
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+
+						case '7':
+							len = (uint32_t)sprintf(buf, &env[4], PrincipalServidor_GetEstadoTexto());
+							break;
+
+						case '8':
+							len = (uint32_t)sprintf(buf, &env[4], PrincipalServidor_GetAlertaTexto());
+							break;
+
+						case '9':
+							len = (uint32_t)sprintf(buf, &env[4], PrincipalServidor_GetAuto() ? "checked" : "");
+							break;
+
+						case 'a':
+							PrincipalServidor_GetHora1(&h1, &m1);
+							snprintf(tmp, sizeof(tmp), "%02u:%02u", h1, m1);
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+
+						case 'b':
+							PrincipalServidor_GetHora2(&h2, &m2);
+							snprintf(tmp, sizeof(tmp), "%02u:%02u", h2, m2);
+							len = (uint32_t)sprintf(buf, &env[4], tmp);
+							break;
+					}
+					break;
+				}
     
   }
   return (len);

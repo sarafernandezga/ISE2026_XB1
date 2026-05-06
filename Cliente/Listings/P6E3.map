@@ -2367,6 +2367,20 @@ Section Cross References
     usart_stm32f4xx.o(.rodata.USART3_Resources) refers to usart_stm32f4xx.o(.rodata.USART3_rx) for [Anonymous Symbol]
     usart_stm32f4xx.o(.rodata.USART3_Resources) refers to usart_stm32f4xx.o(.bss.USART3_Info) for [Anonymous Symbol]
     usart_stm32f4xx.o(.rodata.USART3_Resources) refers to usart_stm32f4xx.o(.bss.USART3_TransferInfo) for [Anonymous Symbol]
+    retarget_io.o(.ARM.exidx.text.ITM_SendChar) refers to retarget_io.o(.text.ITM_SendChar) for [Anonymous Symbol]
+    retarget_io.o(.text.ITM_ReceiveChar) refers to retarget_io.o(.data.ITM_RxBuffer) for ITM_RxBuffer
+    retarget_io.o(.ARM.exidx.text.ITM_ReceiveChar) refers to retarget_io.o(.text.ITM_ReceiveChar) for [Anonymous Symbol]
+    retarget_io.o(.text._sys_open) refers to strcmpv7em.o(.text) for strcmp
+    retarget_io.o(.ARM.exidx.text._sys_open) refers to retarget_io.o(.text._sys_open) for [Anonymous Symbol]
+    retarget_io.o(.ARM.exidx.text._sys_close) refers to retarget_io.o(.text._sys_close) for [Anonymous Symbol]
+    retarget_io.o(.text._sys_write) refers to retarget_io.o(.text.stdout_putchar) for stdout_putchar
+    retarget_io.o(.ARM.exidx.text._sys_write) refers to retarget_io.o(.text._sys_write) for [Anonymous Symbol]
+    retarget_io.o(.text.stdout_putchar) refers to retarget_io.o(.text.ITM_SendChar) for ITM_SendChar
+    retarget_io.o(.ARM.exidx.text.stdout_putchar) refers to retarget_io.o(.text.stdout_putchar) for [Anonymous Symbol]
+    retarget_io.o(.ARM.exidx.text._sys_read) refers to retarget_io.o(.text._sys_read) for [Anonymous Symbol]
+    retarget_io.o(.ARM.exidx.text._sys_istty) refers to retarget_io.o(.text._sys_istty) for [Anonymous Symbol]
+    retarget_io.o(.ARM.exidx.text._sys_seek) refers to retarget_io.o(.text._sys_seek) for [Anonymous Symbol]
+    retarget_io.o(.ARM.exidx.text._sys_flen) refers to retarget_io.o(.text._sys_flen) for [Anonymous Symbol]
     stm32f4xx_hal.o(.text.HAL_Init) refers to stm32f4xx_hal_cortex.o(.text.HAL_NVIC_SetPriorityGrouping) for HAL_NVIC_SetPriorityGrouping
     stm32f4xx_hal.o(.text.HAL_Init) refers to stm32f4xx_hal.o(.text.HAL_InitTick) for HAL_InitTick
     stm32f4xx_hal.o(.text.HAL_Init) refers to stm32f4xx_hal.o(.text.HAL_MspInit) for HAL_MspInit
@@ -4733,6 +4747,31 @@ Removing Unused input sections from the image.
     Removing usart_stm32f4xx.o(.ARM.exidx.text.USART_SetModemControl), (8 bytes).
     Removing usart_stm32f4xx.o(.ARM.exidx.text.USART_GetModemStatus), (8 bytes).
     Removing usart_stm32f4xx.o(.rodata.Driver_USART2), (56 bytes).
+    Removing retarget_io.o(.text), (0 bytes).
+    Removing retarget_io.o(.text.ITM_SendChar), (46 bytes).
+    Removing retarget_io.o(.ARM.exidx.text.ITM_SendChar), (8 bytes).
+    Removing retarget_io.o(.text.ITM_ReceiveChar), (32 bytes).
+    Removing retarget_io.o(.ARM.exidx.text.ITM_ReceiveChar), (8 bytes).
+    Removing retarget_io.o(.text._sys_open), (100 bytes).
+    Removing retarget_io.o(.ARM.exidx.text._sys_open), (8 bytes).
+    Removing retarget_io.o(.text._sys_close), (18 bytes).
+    Removing retarget_io.o(.ARM.exidx.text._sys_close), (8 bytes).
+    Removing retarget_io.o(.text._sys_write), (46 bytes).
+    Removing retarget_io.o(.ARM.exidx.text._sys_write), (8 bytes).
+    Removing retarget_io.o(.text.stdout_putchar), (8 bytes).
+    Removing retarget_io.o(.ARM.exidx.text.stdout_putchar), (8 bytes).
+    Removing retarget_io.o(.text._sys_read), (20 bytes).
+    Removing retarget_io.o(.ARM.exidx.text._sys_read), (8 bytes).
+    Removing retarget_io.o(.text._sys_istty), (16 bytes).
+    Removing retarget_io.o(.ARM.exidx.text._sys_istty), (8 bytes).
+    Removing retarget_io.o(.text._sys_seek), (6 bytes).
+    Removing retarget_io.o(.ARM.exidx.text._sys_seek), (8 bytes).
+    Removing retarget_io.o(.text._sys_flen), (4 bytes).
+    Removing retarget_io.o(.ARM.exidx.text._sys_flen), (8 bytes).
+    Removing retarget_io.o(.data.ITM_RxBuffer), (4 bytes).
+    Removing retarget_io.o(.rodata.__stdin_name), (7 bytes).
+    Removing retarget_io.o(.rodata.__stdout_name), (8 bytes).
+    Removing retarget_io.o(.rodata.__stderr_name), (8 bytes).
     Removing stm32f4xx_hal.o(.text), (0 bytes).
     Removing stm32f4xx_hal.o(.ARM.exidx.text.HAL_Init), (8 bytes).
     Removing stm32f4xx_hal.o(.ARM.exidx.text.HAL_InitTick), (8 bytes).
@@ -5739,7 +5778,7 @@ Removing Unused input sections from the image.
     Removing system_stm32f4xx.o(.ARM.exidx.text.SystemInit), (8 bytes).
     Removing system_stm32f4xx.o(.ARM.exidx.text.SystemCoreClockUpdate), (8 bytes).
 
-2031 unused section(s) (total 67925 bytes) removed from the image.
+2056 unused section(s) (total 68328 bytes) removed from the image.
 
 ==============================================================================
 
@@ -5790,6 +5829,7 @@ Image Symbol Table
     ../clib/memcpset.s                       0x00000000   Number         0  aeabi_memset4.o ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  rt_memclr.o ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  rt_memclr_w.o ABSOLUTE
+    ../clib/memcpset.s                       0x00000000   Number         0  strcmpv7em.o ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  rt_memcpy_w.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_outer.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_formal.o ABSOLUTE
@@ -5847,6 +5887,7 @@ Image Symbol Table
     leds_N.c                                 0x00000000   Number         0  leds_n.o ABSOLUTE
     main.c                                   0x00000000   Number         0  main.o ABSOLUTE
     os_systick.c                             0x00000000   Number         0  os_systick.o ABSOLUTE
+    retarget_io.c                            0x00000000   Number         0  retarget_io.o ABSOLUTE
     rtx_delay.c                              0x00000000   Number         0  rtx_delay.o ABSOLUTE
     rtx_evflags.c                            0x00000000   Number         0  rtx_evflags.o ABSOLUTE
     rtx_evr.c                                0x00000000   Number         0  rtx_evr.o ABSOLUTE
@@ -7353,72 +7394,72 @@ Memory Map of the image
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x08000000   0x08000000   0x000001ac   Data   RO         2891    RESET               startup_stm32f429xx.o
-    0x080001ac   0x080001ac   0x00000008   Code   RO         2927  * !!!main             c_w.l(__main.o)
-    0x080001b4   0x080001b4   0x00000034   Code   RO         3153    !!!scatter          c_w.l(__scatter.o)
-    0x080001e8   0x080001e8   0x0000001a   Code   RO         3155    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x08000000   0x08000000   0x000001ac   Data   RO         2923    RESET               startup_stm32f429xx.o
+    0x080001ac   0x080001ac   0x00000008   Code   RO         2961  * !!!main             c_w.l(__main.o)
+    0x080001b4   0x080001b4   0x00000034   Code   RO         3187    !!!scatter          c_w.l(__scatter.o)
+    0x080001e8   0x080001e8   0x0000001a   Code   RO         3189    !!handler_copy      c_w.l(__scatter_copy.o)
     0x08000202   0x08000202   0x00000002   PAD
-    0x08000204   0x08000204   0x0000001c   Code   RO         3157    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x08000220   0x08000220   0x00000002   Code   RO         3017    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3030    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3032    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3035    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3037    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3039    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3042    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3044    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3046    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3048    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3050    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3052    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3054    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3056    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3058    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3060    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3062    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3066    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3068    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3070    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000000   Code   RO         3072    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x08000222   0x08000222   0x00000002   Code   RO         3073    .ARM.Collect$$libinit$$00000033  c_w.l(libinit2.o)
-    0x08000224   0x08000224   0x00000002   Code   RO         3108    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x08000226   0x08000226   0x00000000   Code   RO         3136    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000000   Code   RO         3138    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000000   Code   RO         3141    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000000   Code   RO         3144    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000000   Code   RO         3146    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000000   Code   RO         3149    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x08000226   0x08000226   0x00000002   Code   RO         3150    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x08000228   0x08000228   0x00000000   Code   RO         2957    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x08000228   0x08000228   0x00000000   Code   RO         2984    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x08000228   0x08000228   0x00000006   Code   RO         2996    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x0800022e   0x0800022e   0x00000008   Code   RO         2985    .ARM.Collect$$rtentry$$00000008  c_w.l(__rtentry2.o)
-    0x08000236   0x08000236   0x00000004   Code   RO         2987    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x0800023a   0x0800023a   0x00000000   Code   RO         2989    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x0800023a   0x0800023a   0x00000008   Code   RO         2990    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x08000242   0x08000242   0x00000002   Code   RO         3021    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x08000244   0x08000244   0x00000000   Code   RO         3079    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x08000244   0x08000244   0x00000004   Code   RO         3080    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x08000248   0x08000248   0x00000006   Code   RO         3081    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x08000204   0x08000204   0x0000001c   Code   RO         3191    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x08000220   0x08000220   0x00000002   Code   RO         3051    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3064    .ARM.Collect$$libinit$$00000002  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3066    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3069    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3071    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3073    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3076    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3078    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3080    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3082    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3084    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3086    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3088    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3090    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3092    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3094    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3096    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3100    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3102    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3104    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000000   Code   RO         3106    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x08000222   0x08000222   0x00000002   Code   RO         3107    .ARM.Collect$$libinit$$00000033  c_w.l(libinit2.o)
+    0x08000224   0x08000224   0x00000002   Code   RO         3142    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x08000226   0x08000226   0x00000000   Code   RO         3170    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000000   Code   RO         3172    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000000   Code   RO         3175    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000000   Code   RO         3178    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000000   Code   RO         3180    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000000   Code   RO         3183    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x08000226   0x08000226   0x00000002   Code   RO         3184    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x08000228   0x08000228   0x00000000   Code   RO         2991    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x08000228   0x08000228   0x00000000   Code   RO         3018    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x08000228   0x08000228   0x00000006   Code   RO         3030    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x0800022e   0x0800022e   0x00000008   Code   RO         3019    .ARM.Collect$$rtentry$$00000008  c_w.l(__rtentry2.o)
+    0x08000236   0x08000236   0x00000004   Code   RO         3021    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x0800023a   0x0800023a   0x00000000   Code   RO         3023    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x0800023a   0x0800023a   0x00000008   Code   RO         3024    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x08000242   0x08000242   0x00000002   Code   RO         3055    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x08000244   0x08000244   0x00000000   Code   RO         3113    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x08000244   0x08000244   0x00000004   Code   RO         3114    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x08000248   0x08000248   0x00000006   Code   RO         3115    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x0800024e   0x0800024e   0x00000002   PAD
     0x08000250   0x08000250   0x00000094   Code   RO          308    .text               irq_armv7m.o
-    0x080002e4   0x080002e4   0x00000040   Code   RO         2892    .text               startup_stm32f429xx.o
-    0x08000324   0x08000324   0x000000f0   Code   RO         2915    .text               c_w.l(lludivv7m.o)
-    0x08000414   0x08000414   0x0000008a   Code   RO         2917    .text               c_w.l(rt_memcpy_v6.o)
-    0x0800049e   0x0800049e   0x00000010   Code   RO         2919    .text               c_w.l(aeabi_memset4.o)
-    0x080004ae   0x080004ae   0x00000044   Code   RO         2921    .text               c_w.l(rt_memclr.o)
-    0x080004f2   0x080004f2   0x0000004e   Code   RO         2923    .text               c_w.l(rt_memclr_w.o)
-    0x08000540   0x08000540   0x00000006   Code   RO         2925    .text               c_w.l(heapauxi.o)
-    0x08000546   0x08000546   0x00000064   Code   RO         2962    .text               c_w.l(rt_memcpy_w.o)
-    0x080005aa   0x080005aa   0x0000004a   Code   RO         3006    .text               c_w.l(sys_stackheap_outer.o)
-    0x080005f4   0x080005f4   0x00000012   Code   RO         3008    .text               c_w.l(exit.o)
+    0x080002e4   0x080002e4   0x00000040   Code   RO         2924    .text               startup_stm32f429xx.o
+    0x08000324   0x08000324   0x000000f0   Code   RO         2947    .text               c_w.l(lludivv7m.o)
+    0x08000414   0x08000414   0x0000008a   Code   RO         2949    .text               c_w.l(rt_memcpy_v6.o)
+    0x0800049e   0x0800049e   0x00000010   Code   RO         2951    .text               c_w.l(aeabi_memset4.o)
+    0x080004ae   0x080004ae   0x00000044   Code   RO         2953    .text               c_w.l(rt_memclr.o)
+    0x080004f2   0x080004f2   0x0000004e   Code   RO         2955    .text               c_w.l(rt_memclr_w.o)
+    0x08000540   0x08000540   0x00000006   Code   RO         2959    .text               c_w.l(heapauxi.o)
+    0x08000546   0x08000546   0x00000064   Code   RO         2996    .text               c_w.l(rt_memcpy_w.o)
+    0x080005aa   0x080005aa   0x0000004a   Code   RO         3040    .text               c_w.l(sys_stackheap_outer.o)
+    0x080005f4   0x080005f4   0x00000012   Code   RO         3042    .text               c_w.l(exit.o)
     0x08000606   0x08000606   0x00000002   PAD
-    0x08000608   0x08000608   0x00000008   Code   RO         3018    .text               c_w.l(libspace.o)
-    0x08000610   0x08000610   0x0000000c   Code   RO         3074    .text               c_w.l(sys_exit.o)
-    0x0800061c   0x0800061c   0x00000002   Code   RO         3097    .text               c_w.l(use_no_semi.o)
-    0x0800061e   0x0800061e   0x00000000   Code   RO         3099    .text               c_w.l(indicate_semi.o)
+    0x08000608   0x08000608   0x00000008   Code   RO         3052    .text               c_w.l(libspace.o)
+    0x08000610   0x08000610   0x0000000c   Code   RO         3108    .text               c_w.l(sys_exit.o)
+    0x0800061c   0x0800061c   0x00000002   Code   RO         3131    .text               c_w.l(use_no_semi.o)
+    0x0800061e   0x0800061e   0x00000000   Code   RO         3133    .text               c_w.l(indicate_semi.o)
     0x0800061e   0x0800061e   0x00000002   PAD
-    0x08000620   0x08000620   0x00000108   Code   RO         1792    .text.ADC_Init      stm32f4xx_hal_adc.o
+    0x08000620   0x08000620   0x00000108   Code   RO         1824    .text.ADC_Init      stm32f4xx_hal_adc.o
     0x08000728   0x08000728   0x00000016   Code   RO          282    .text.BME280_CS_0   spih.o
     0x0800073e   0x0800073e   0x00000002   PAD
     0x08000740   0x08000740   0x00000016   Code   RO          270    .text.BME280_CS_1   spih.o
@@ -7617,57 +7658,57 @@ Memory Map of the image
     0x0800117a   0x0800117a   0x00000002   PAD
     0x0800117c   0x0800117c   0x00000002   Code   RO          556    .text.EvrRtxTimerCallback  rtx_evr.o
     0x0800117e   0x0800117e   0x00000002   PAD
-    0x08001180   0x08001180   0x00000128   Code   RO         1832    .text.HAL_ADC_ConfigChannel  stm32f4xx_hal_adc.o
-    0x080012a8   0x080012a8   0x00000006   Code   RO         1828    .text.HAL_ADC_GetValue  stm32f4xx_hal_adc.o
+    0x08001180   0x08001180   0x00000128   Code   RO         1864    .text.HAL_ADC_ConfigChannel  stm32f4xx_hal_adc.o
+    0x080012a8   0x080012a8   0x00000006   Code   RO         1860    .text.HAL_ADC_GetValue  stm32f4xx_hal_adc.o
     0x080012ae   0x080012ae   0x00000002   PAD
-    0x080012b0   0x080012b0   0x0000004e   Code   RO         1788    .text.HAL_ADC_Init  stm32f4xx_hal_adc.o
+    0x080012b0   0x080012b0   0x0000004e   Code   RO         1820    .text.HAL_ADC_Init  stm32f4xx_hal_adc.o
     0x080012fe   0x080012fe   0x00000002   PAD
-    0x08001300   0x08001300   0x00000002   Code   RO         1790    .text.HAL_ADC_MspInit  stm32f4xx_hal_adc.o
+    0x08001300   0x08001300   0x00000002   Code   RO         1822    .text.HAL_ADC_MspInit  stm32f4xx_hal_adc.o
     0x08001302   0x08001302   0x00000002   PAD
-    0x08001304   0x08001304   0x000000b4   Code   RO         1802    .text.HAL_ADC_PollForConversion  stm32f4xx_hal_adc.o
-    0x080013b8   0x080013b8   0x00000114   Code   RO         1798    .text.HAL_ADC_Start  stm32f4xx_hal_adc.o
-    0x080014cc   0x080014cc   0x00000038   Code   RO         1800    .text.HAL_ADC_Stop  stm32f4xx_hal_adc.o
-    0x08001504   0x08001504   0x0000008a   Code   RO         1972    .text.HAL_DMA_Abort  stm32f4xx_hal_dma.o
+    0x08001304   0x08001304   0x000000b4   Code   RO         1834    .text.HAL_ADC_PollForConversion  stm32f4xx_hal_adc.o
+    0x080013b8   0x080013b8   0x00000114   Code   RO         1830    .text.HAL_ADC_Start  stm32f4xx_hal_adc.o
+    0x080014cc   0x080014cc   0x00000038   Code   RO         1832    .text.HAL_ADC_Stop  stm32f4xx_hal_adc.o
+    0x08001504   0x08001504   0x0000008a   Code   RO         2004    .text.HAL_DMA_Abort  stm32f4xx_hal_dma.o
     0x0800158e   0x0800158e   0x00000002   PAD
-    0x08001590   0x08001590   0x00000028   Code   RO         1739    .text.HAL_Delay     stm32f4xx_hal.o
-    0x080015b8   0x080015b8   0x00000106   Code   RO         2014    .text.HAL_GPIO_DeInit  stm32f4xx_hal_gpio.o
+    0x08001590   0x08001590   0x00000028   Code   RO         1771    .text.HAL_Delay     stm32f4xx_hal.o
+    0x080015b8   0x080015b8   0x00000106   Code   RO         2046    .text.HAL_GPIO_DeInit  stm32f4xx_hal_gpio.o
     0x080016be   0x080016be   0x00000002   PAD
-    0x080016c0   0x080016c0   0x0000019a   Code   RO         2012    .text.HAL_GPIO_Init  stm32f4xx_hal_gpio.o
+    0x080016c0   0x080016c0   0x0000019a   Code   RO         2044    .text.HAL_GPIO_Init  stm32f4xx_hal_gpio.o
     0x0800185a   0x0800185a   0x00000002   PAD
-    0x0800185c   0x0800185c   0x0000000a   Code   RO         2016    .text.HAL_GPIO_ReadPin  stm32f4xx_hal_gpio.o
+    0x0800185c   0x0800185c   0x0000000a   Code   RO         2048    .text.HAL_GPIO_ReadPin  stm32f4xx_hal_gpio.o
     0x08001866   0x08001866   0x00000002   PAD
-    0x08001868   0x08001868   0x0000000a   Code   RO         2018    .text.HAL_GPIO_WritePin  stm32f4xx_hal_gpio.o
+    0x08001868   0x08001868   0x0000000a   Code   RO         2050    .text.HAL_GPIO_WritePin  stm32f4xx_hal_gpio.o
     0x08001872   0x08001872   0x00000002   PAD
-    0x08001874   0x08001874   0x0000000e   Code   RO         1747    .text.HAL_GetREVID  stm32f4xx_hal.o
+    0x08001874   0x08001874   0x0000000e   Code   RO         1779    .text.HAL_GetREVID  stm32f4xx_hal.o
     0x08001882   0x08001882   0x00000002   PAD
     0x08001884   0x08001884   0x00000050   Code   RO            2    .text.HAL_GetTick   main.o
-    0x080018d4   0x080018d4   0x0000002e   Code   RO         1719    .text.HAL_Init      stm32f4xx_hal.o
+    0x080018d4   0x080018d4   0x0000002e   Code   RO         1751    .text.HAL_Init      stm32f4xx_hal.o
     0x08001902   0x08001902   0x00000002   PAD
-    0x08001904   0x08001904   0x00000050   Code   RO         1721    .text.HAL_InitTick  stm32f4xx_hal.o
-    0x08001954   0x08001954   0x00000002   Code   RO         1723    .text.HAL_MspInit   stm32f4xx_hal.o
+    0x08001904   0x08001904   0x00000050   Code   RO         1753    .text.HAL_InitTick  stm32f4xx_hal.o
+    0x08001954   0x08001954   0x00000002   Code   RO         1755    .text.HAL_MspInit   stm32f4xx_hal.o
     0x08001956   0x08001956   0x00000002   PAD
-    0x08001958   0x08001958   0x00000008   Code   RO         1936    .text.HAL_NVIC_ClearPendingIRQ  stm32f4xx_hal_cortex.o
-    0x08001960   0x08001960   0x00000008   Code   RO         1902    .text.HAL_NVIC_DisableIRQ  stm32f4xx_hal_cortex.o
-    0x08001968   0x08001968   0x00000008   Code   RO         1898    .text.HAL_NVIC_EnableIRQ  stm32f4xx_hal_cortex.o
-    0x08001970   0x08001970   0x0000001e   Code   RO         1890    .text.HAL_NVIC_SetPriority  stm32f4xx_hal_cortex.o
+    0x08001958   0x08001958   0x00000008   Code   RO         1968    .text.HAL_NVIC_ClearPendingIRQ  stm32f4xx_hal_cortex.o
+    0x08001960   0x08001960   0x00000008   Code   RO         1934    .text.HAL_NVIC_DisableIRQ  stm32f4xx_hal_cortex.o
+    0x08001968   0x08001968   0x00000008   Code   RO         1930    .text.HAL_NVIC_EnableIRQ  stm32f4xx_hal_cortex.o
+    0x08001970   0x08001970   0x0000001e   Code   RO         1922    .text.HAL_NVIC_SetPriority  stm32f4xx_hal_cortex.o
     0x0800198e   0x0800198e   0x00000002   PAD
-    0x08001990   0x08001990   0x00000008   Code   RO         1886    .text.HAL_NVIC_SetPriorityGrouping  stm32f4xx_hal_cortex.o
-    0x08001998   0x08001998   0x00000160   Code   RO         2290    .text.HAL_RCC_ClockConfig  stm32f4xx_hal_rcc.o
-    0x08001af8   0x08001af8   0x0000000c   Code   RO         2300    .text.HAL_RCC_GetHCLKFreq  stm32f4xx_hal_rcc.o
-    0x08001b04   0x08001b04   0x00000022   Code   RO         2302    .text.HAL_RCC_GetPCLK1Freq  stm32f4xx_hal_rcc.o
+    0x08001990   0x08001990   0x00000008   Code   RO         1918    .text.HAL_NVIC_SetPriorityGrouping  stm32f4xx_hal_cortex.o
+    0x08001998   0x08001998   0x00000160   Code   RO         2322    .text.HAL_RCC_ClockConfig  stm32f4xx_hal_rcc.o
+    0x08001af8   0x08001af8   0x0000000c   Code   RO         2332    .text.HAL_RCC_GetHCLKFreq  stm32f4xx_hal_rcc.o
+    0x08001b04   0x08001b04   0x00000022   Code   RO         2334    .text.HAL_RCC_GetPCLK1Freq  stm32f4xx_hal_rcc.o
     0x08001b26   0x08001b26   0x00000002   PAD
-    0x08001b28   0x08001b28   0x00000022   Code   RO         2304    .text.HAL_RCC_GetPCLK2Freq  stm32f4xx_hal_rcc.o
+    0x08001b28   0x08001b28   0x00000022   Code   RO         2336    .text.HAL_RCC_GetPCLK2Freq  stm32f4xx_hal_rcc.o
     0x08001b4a   0x08001b4a   0x00000002   PAD
-    0x08001b4c   0x08001b4c   0x0000006a   Code   RO         2292    .text.HAL_RCC_GetSysClockFreq  stm32f4xx_hal_rcc.o
+    0x08001b4c   0x08001b4c   0x0000006a   Code   RO         2324    .text.HAL_RCC_GetSysClockFreq  stm32f4xx_hal_rcc.o
     0x08001bb6   0x08001bb6   0x00000002   PAD
-    0x08001bb8   0x08001bb8   0x00000334   Code   RO         2288    .text.HAL_RCC_OscConfig  stm32f4xx_hal_rcc.o
-    0x08001eec   0x08001eec   0x00000008   Code   RO         1910    .text.HAL_SYSTICK_Config  stm32f4xx_hal_cortex.o
-    0x08001ef4   0x08001ef4   0x000000a0   Code   RO         2638    .text.HAL_TIM_PWM_ConfigChannel  stm32f4xx_hal_tim.o
-    0x08001f94   0x08001f94   0x00000036   Code   RO         2526    .text.HAL_TIM_PWM_Init  stm32f4xx_hal_tim.o
+    0x08001bb8   0x08001bb8   0x00000334   Code   RO         2320    .text.HAL_RCC_OscConfig  stm32f4xx_hal_rcc.o
+    0x08001eec   0x08001eec   0x00000008   Code   RO         1942    .text.HAL_SYSTICK_Config  stm32f4xx_hal_cortex.o
+    0x08001ef4   0x08001ef4   0x000000a0   Code   RO         2670    .text.HAL_TIM_PWM_ConfigChannel  stm32f4xx_hal_tim.o
+    0x08001f94   0x08001f94   0x00000036   Code   RO         2558    .text.HAL_TIM_PWM_Init  stm32f4xx_hal_tim.o
     0x08001fca   0x08001fca   0x00000002   PAD
-    0x08001fcc   0x08001fcc   0x00000002   Code   RO         2528    .text.HAL_TIM_PWM_MspInit  stm32f4xx_hal_tim.o
+    0x08001fcc   0x08001fcc   0x00000002   Code   RO         2560    .text.HAL_TIM_PWM_MspInit  stm32f4xx_hal_tim.o
     0x08001fce   0x08001fce   0x00000002   PAD
-    0x08001fd0   0x08001fd0   0x0000003c   Code   RO         2534    .text.HAL_TIM_PWM_Start  stm32f4xx_hal_tim.o
+    0x08001fd0   0x08001fd0   0x0000003c   Code   RO         2566    .text.HAL_TIM_PWM_Start  stm32f4xx_hal_tim.o
     0x0800200c   0x0800200c   0x00000002   Code   RO           23    .text.HardFault_Handler  stm32f4xx_it.o
     0x0800200e   0x0800200e   0x00000002   PAD
     0x08002010   0x08002010   0x00000036   Code   RO           91    .text.Humedad_To_U8  principal.o
@@ -7744,7 +7785,7 @@ Memory Map of the image
     0x08003374   0x08003374   0x00000024   Code   RO         1017    .text.MessageQueueRemove  rtx_msgqueue.o
     0x08003398   0x08003398   0x00000002   Code   RO           21    .text.NMI_Handler   stm32f4xx_it.o
     0x0800339a   0x0800339a   0x00000002   PAD
-    0x0800339c   0x0800339c   0x0000002c   Code   RO         1896    .text.NVIC_EncodePriority  stm32f4xx_hal_cortex.o
+    0x0800339c   0x0800339c   0x0000002c   Code   RO         1928    .text.NVIC_EncodePriority  stm32f4xx_hal_cortex.o
     0x080033c8   0x080033c8   0x0000000c   Code   RO         1433    .text.OS_Tick_AcknowledgeIRQ  os_systick.o
     0x080033d4   0x080033d4   0x00000032   Code   RO         1429    .text.OS_Tick_Enable  os_systick.o
     0x08003406   0x08003406   0x00000002   PAD
@@ -7791,19 +7832,19 @@ Memory Map of the image
     0x08003d40   0x08003d40   0x0000000a   Code   RO           95    .text.Saturar_U8    principal.o
     0x08003d4a   0x08003d4a   0x00000002   PAD
     0x08003d4c   0x08003d4c   0x00000010   Code   RO         1175    .text.SetPendSV     rtx_system.o
-    0x08003d5c   0x08003d5c   0x0000002e   Code   RO         1912    .text.SysTick_Config  stm32f4xx_hal_cortex.o
+    0x08003d5c   0x08003d5c   0x0000002e   Code   RO         1944    .text.SysTick_Config  stm32f4xx_hal_cortex.o
     0x08003d8a   0x08003d8a   0x00000002   PAD
     0x08003d8c   0x08003d8c   0x000000a0   Code   RO            6    .text.SystemClock_Config  main.o
-    0x08003e2c   0x08003e2c   0x0000007e   Code   RO         2901    .text.SystemCoreClockUpdate  system_stm32f4xx.o
+    0x08003e2c   0x08003e2c   0x0000007e   Code   RO         2933    .text.SystemCoreClockUpdate  system_stm32f4xx.o
     0x08003eaa   0x08003eaa   0x00000002   PAD
-    0x08003eac   0x08003eac   0x00000010   Code   RO         2899    .text.SystemInit    system_stm32f4xx.o
-    0x08003ebc   0x08003ebc   0x00000124   Code   RO         2476    .text.TIM_Base_SetConfig  stm32f4xx_hal_tim.o
-    0x08003fe0   0x08003fe0   0x00000024   Code   RO         2510    .text.TIM_CCxChannelCmd  stm32f4xx_hal_tim.o
-    0x08004004   0x08004004   0x00000064   Code   RO         2620    .text.TIM_OC1_SetConfig  stm32f4xx_hal_tim.o
-    0x08004068   0x08004068   0x0000006a   Code   RO         2622    .text.TIM_OC2_SetConfig  stm32f4xx_hal_tim.o
+    0x08003eac   0x08003eac   0x00000010   Code   RO         2931    .text.SystemInit    system_stm32f4xx.o
+    0x08003ebc   0x08003ebc   0x00000124   Code   RO         2508    .text.TIM_Base_SetConfig  stm32f4xx_hal_tim.o
+    0x08003fe0   0x08003fe0   0x00000024   Code   RO         2542    .text.TIM_CCxChannelCmd  stm32f4xx_hal_tim.o
+    0x08004004   0x08004004   0x00000064   Code   RO         2652    .text.TIM_OC1_SetConfig  stm32f4xx_hal_tim.o
+    0x08004068   0x08004068   0x0000006a   Code   RO         2654    .text.TIM_OC2_SetConfig  stm32f4xx_hal_tim.o
     0x080040d2   0x080040d2   0x00000002   PAD
-    0x080040d4   0x080040d4   0x00000068   Code   RO         2624    .text.TIM_OC3_SetConfig  stm32f4xx_hal_tim.o
-    0x0800413c   0x0800413c   0x0000004e   Code   RO         2626    .text.TIM_OC4_SetConfig  stm32f4xx_hal_tim.o
+    0x080040d4   0x080040d4   0x00000068   Code   RO         2656    .text.TIM_OC3_SetConfig  stm32f4xx_hal_tim.o
+    0x0800413c   0x0800413c   0x0000004e   Code   RO         2658    .text.TIM_OC4_SetConfig  stm32f4xx_hal_tim.o
     0x0800418a   0x0800418a   0x00000002   PAD
     0x0800418c   0x0800418c   0x000000ea   Code   RO           42    .text.ThControlComRecepcion  com.o
     0x08004276   0x08004276   0x00000002   PAD
@@ -7907,17 +7948,17 @@ Memory Map of the image
     0x08006430   0x08006430   0x0000000e   Code   RO         1575    .text.__NVIC_ClearPendingIRQ  spi_stm32f4xx.o
     0x0800643e   0x0800643e   0x00000002   PAD
     0x08006440   0x08006440   0x00000020   Code   RO         1675    .text.__NVIC_ClearPendingIRQ  usart_stm32f4xx.o
-    0x08006460   0x08006460   0x00000020   Code   RO         1938    .text.__NVIC_ClearPendingIRQ  stm32f4xx_hal_cortex.o
-    0x08006480   0x08006480   0x00000028   Code   RO         1904    .text.__NVIC_DisableIRQ  stm32f4xx_hal_cortex.o
+    0x08006460   0x08006460   0x00000020   Code   RO         1970    .text.__NVIC_ClearPendingIRQ  stm32f4xx_hal_cortex.o
+    0x08006480   0x08006480   0x00000028   Code   RO         1936    .text.__NVIC_DisableIRQ  stm32f4xx_hal_cortex.o
     0x080064a8   0x080064a8   0x0000000e   Code   RO         1577    .text.__NVIC_EnableIRQ  spi_stm32f4xx.o
     0x080064b6   0x080064b6   0x00000002   PAD
     0x080064b8   0x080064b8   0x00000020   Code   RO         1677    .text.__NVIC_EnableIRQ  usart_stm32f4xx.o
-    0x080064d8   0x080064d8   0x00000020   Code   RO         1900    .text.__NVIC_EnableIRQ  stm32f4xx_hal_cortex.o
+    0x080064d8   0x080064d8   0x00000020   Code   RO         1932    .text.__NVIC_EnableIRQ  stm32f4xx_hal_cortex.o
     0x080064f8   0x080064f8   0x00000010   Code   RO          811    .text.__NVIC_GetPriorityGrouping  rtx_kernel.o
-    0x08006508   0x08006508   0x00000010   Code   RO         1892    .text.__NVIC_GetPriorityGrouping  stm32f4xx_hal_cortex.o
-    0x08006518   0x08006518   0x00000022   Code   RO         1894    .text.__NVIC_SetPriority  stm32f4xx_hal_cortex.o
+    0x08006508   0x08006508   0x00000010   Code   RO         1924    .text.__NVIC_GetPriorityGrouping  stm32f4xx_hal_cortex.o
+    0x08006518   0x08006518   0x00000022   Code   RO         1926    .text.__NVIC_SetPriority  stm32f4xx_hal_cortex.o
     0x0800653a   0x0800653a   0x00000002   PAD
-    0x0800653c   0x0800653c   0x00000020   Code   RO         1888    .text.__NVIC_SetPriorityGrouping  stm32f4xx_hal_cortex.o
+    0x0800653c   0x0800653c   0x00000020   Code   RO         1920    .text.__NVIC_SetPriorityGrouping  stm32f4xx_hal_cortex.o
     0x0800655c   0x0800655c   0x0000001a   Code   RO          853    .text._mutex_acquire  rtx_lib.o
     0x08006576   0x08006576   0x00000002   PAD
     0x08006578   0x08006578   0x0000000a   Code   RO          857    .text._mutex_free   rtx_lib.o
@@ -8148,36 +8189,36 @@ Memory Map of the image
     0x080087cc   0x080087cc   0x000000a6   Code   RO         1363    .text.svcRtxThreadFlagsWait  rtx_thread.o
     0x08008872   0x08008872   0x00000002   PAD
     0x08008874   0x08008874   0x00000240   Code   RO         1245    .text.svcRtxThreadNew  rtx_thread.o
-    0x08008ab4   0x08008ab4   0x00000018   Code   RO         3000    x$fpl$dcmpinf       fz_ws.l(dcmpi.o)
-    0x08008acc   0x08008acc   0x00000078   Code   RO         2964    x$fpl$deqf          fz_ws.l(deqf.o)
-    0x08008b44   0x08008b44   0x00000078   Code   RO         2966    x$fpl$dgeqf         fz_ws.l(dgeqf.o)
-    0x08008bbc   0x08008bbc   0x00000078   Code   RO         2968    x$fpl$dleqf         fz_ws.l(dleqf.o)
-    0x08008c34   0x08008c34   0x0000009c   Code   RO         3002    x$fpl$dnaninf       fz_ws.l(dnaninf.o)
-    0x08008cd0   0x08008cd0   0x0000000c   Code   RO         2970    x$fpl$dretinf       fz_ws.l(dretinf.o)
-    0x08008cdc   0x08008cdc   0x00000056   Code   RO         2931    x$fpl$f2d           fz_ws.l(f2d.o)
+    0x08008ab4   0x08008ab4   0x00000018   Code   RO         3034    x$fpl$dcmpinf       fz_ws.l(dcmpi.o)
+    0x08008acc   0x08008acc   0x00000078   Code   RO         2998    x$fpl$deqf          fz_ws.l(deqf.o)
+    0x08008b44   0x08008b44   0x00000078   Code   RO         3000    x$fpl$dgeqf         fz_ws.l(dgeqf.o)
+    0x08008bbc   0x08008bbc   0x00000078   Code   RO         3002    x$fpl$dleqf         fz_ws.l(dleqf.o)
+    0x08008c34   0x08008c34   0x0000009c   Code   RO         3036    x$fpl$dnaninf       fz_ws.l(dnaninf.o)
+    0x08008cd0   0x08008cd0   0x0000000c   Code   RO         3004    x$fpl$dretinf       fz_ws.l(dretinf.o)
+    0x08008cdc   0x08008cdc   0x00000056   Code   RO         2965    x$fpl$f2d           fz_ws.l(f2d.o)
     0x08008d32   0x08008d32   0x00000002   PAD
-    0x08008d34   0x08008d34   0x000000c4   Code   RO         2933    x$fpl$fadd          fz_ws.l(faddsub_clz.o)
-    0x08008df8   0x08008df8   0x00000054   Code   RO         2929    x$fpl$fcmp          fz_ws.l(dcmp.o)
-    0x08008e4c   0x08008e4c   0x00000054   Code   RO         2939    x$fpl$fcmp          fz_ws.l(fcmp.o)
-    0x08008ea0   0x08008ea0   0x00000018   Code   RO         3004    x$fpl$fcmpinf       fz_ws.l(fcmpi.o)
-    0x08008eb8   0x08008eb8   0x00000184   Code   RO         2942    x$fpl$fdiv          fz_ws.l(fdiv.o)
-    0x0800903c   0x0800903c   0x00000068   Code   RO         2972    x$fpl$feqf          fz_ws.l(feqf.o)
-    0x080090a4   0x080090a4   0x00000036   Code   RO         2945    x$fpl$ffix          fz_ws.l(ffix.o)
+    0x08008d34   0x08008d34   0x000000c4   Code   RO         2967    x$fpl$fadd          fz_ws.l(faddsub_clz.o)
+    0x08008df8   0x08008df8   0x00000054   Code   RO         2963    x$fpl$fcmp          fz_ws.l(dcmp.o)
+    0x08008e4c   0x08008e4c   0x00000054   Code   RO         2973    x$fpl$fcmp          fz_ws.l(fcmp.o)
+    0x08008ea0   0x08008ea0   0x00000018   Code   RO         3038    x$fpl$fcmpinf       fz_ws.l(fcmpi.o)
+    0x08008eb8   0x08008eb8   0x00000184   Code   RO         2976    x$fpl$fdiv          fz_ws.l(fdiv.o)
+    0x0800903c   0x0800903c   0x00000068   Code   RO         3006    x$fpl$feqf          fz_ws.l(feqf.o)
+    0x080090a4   0x080090a4   0x00000036   Code   RO         2979    x$fpl$ffix          fz_ws.l(ffix.o)
     0x080090da   0x080090da   0x00000002   PAD
-    0x080090dc   0x080090dc   0x00000030   Code   RO         2950    x$fpl$fflt          fz_ws.l(fflt_clz.o)
-    0x0800910c   0x0800910c   0x00000026   Code   RO         2949    x$fpl$ffltu         fz_ws.l(fflt_clz.o)
+    0x080090dc   0x080090dc   0x00000030   Code   RO         2984    x$fpl$fflt          fz_ws.l(fflt_clz.o)
+    0x0800910c   0x0800910c   0x00000026   Code   RO         2983    x$fpl$ffltu         fz_ws.l(fflt_clz.o)
     0x08009132   0x08009132   0x00000002   PAD
-    0x08009134   0x08009134   0x00000068   Code   RO         2974    x$fpl$fgeqf         fz_ws.l(fgeqf.o)
-    0x0800919c   0x0800919c   0x00000068   Code   RO         2976    x$fpl$fleqf         fz_ws.l(fleqf.o)
-    0x08009204   0x08009204   0x00000102   Code   RO         2955    x$fpl$fmul          fz_ws.l(fmul.o)
-    0x08009306   0x08009306   0x0000008c   Code   RO         2978    x$fpl$fnaninf       fz_ws.l(fnaninf.o)
-    0x08009392   0x08009392   0x0000000a   Code   RO         2980    x$fpl$fretinf       fz_ws.l(fretinf.o)
-    0x0800939c   0x0800939c   0x000000ea   Code   RO         2935    x$fpl$fsub          fz_ws.l(faddsub_clz.o)
-    0x08009486   0x08009486   0x00000000   Code   RO         2982    x$fpl$usenofp       fz_ws.l(usenofp.o)
+    0x08009134   0x08009134   0x00000068   Code   RO         3008    x$fpl$fgeqf         fz_ws.l(fgeqf.o)
+    0x0800919c   0x0800919c   0x00000068   Code   RO         3010    x$fpl$fleqf         fz_ws.l(fleqf.o)
+    0x08009204   0x08009204   0x00000102   Code   RO         2989    x$fpl$fmul          fz_ws.l(fmul.o)
+    0x08009306   0x08009306   0x0000008c   Code   RO         3012    x$fpl$fnaninf       fz_ws.l(fnaninf.o)
+    0x08009392   0x08009392   0x0000000a   Code   RO         3014    x$fpl$fretinf       fz_ws.l(fretinf.o)
+    0x0800939c   0x0800939c   0x000000ea   Code   RO         2969    x$fpl$fsub          fz_ws.l(faddsub_clz.o)
+    0x08009486   0x08009486   0x00000000   Code   RO         3016    x$fpl$usenofp       fz_ws.l(usenofp.o)
     0x08009486   0x08009486   0x00000002   PAD
     0x08009488   0x08009488   0x000000a8   Data   RO          863    .rodata             rtx_lib.o
-    0x08009530   0x08009530   0x00000010   Data   RO         2904    .rodata.AHBPrescTable  system_stm32f4xx.o
-    0x08009540   0x08009540   0x00000008   Data   RO         2905    .rodata.APBPrescTable  system_stm32f4xx.o
+    0x08009530   0x08009530   0x00000010   Data   RO         2936    .rodata.AHBPrescTable  system_stm32f4xx.o
+    0x08009540   0x08009540   0x00000008   Data   RO         2937    .rodata.APBPrescTable  system_stm32f4xx.o
     0x08009548   0x08009548   0x00000030   Data   RO         1519    .rodata.Driver_I2C1  i2c_stm32f4xx.o
     0x08009578   0x08009578   0x0000002c   Data   RO         1589    .rodata.Driver_SPI1  spi_stm32f4xx.o
     0x080095a4   0x080095a4   0x00000038   Data   RO         1700    .rodata.Driver_USART3  usart_stm32f4xx.o
@@ -8198,7 +8239,7 @@ Memory Map of the image
     0x08009730   0x08009730   0x0000000b   Data   RO          835    .rodata.str1.4      rtx_kernel.o
     0x0800973b   0x0800973b   0x00000001   PAD
     0x0800973c   0x0800973c   0x00000024   Data   RO          135    .rodata.thread_attr_pot  adc.o
-    0x08009760   0x08009760   0x00000020   Data   RO         3152    Region$$Table       anon$$obj.o
+    0x08009760   0x08009760   0x00000020   Data   RO         3186    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08009780, Size: 0x00008ea8, Max: 0x00030000, ABSOLUTE)
@@ -8206,13 +8247,13 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   0x08009780   0x00000004   Data   RW          288    .data.SPIdrv        spih.o
-    0x20000004   0x08009784   0x00000004   Data   RW         2903    .data.SystemCoreClock  system_stm32f4xx.o
+    0x20000004   0x08009784   0x00000004   Data   RW         2935    .data.SystemCoreClock  system_stm32f4xx.o
     0x20000008   0x08009788   0x000000a4   Data   RW          836    .data.os            rtx_kernel.o
-    0x200000ac   0x0800982c   0x00000001   Data   RW         1778    .data.uwTickFreq    stm32f4xx_hal.o
+    0x200000ac   0x0800982c   0x00000001   Data   RW         1810    .data.uwTickFreq    stm32f4xx_hal.o
     0x200000ad   0x0800982d   0x00000003   PAD
-    0x200000b0   0x08009830   0x00000004   Data   RW         1777    .data.uwTickPrio    stm32f4xx_hal.o
+    0x200000b0   0x08009830   0x00000004   Data   RW         1809    .data.uwTickPrio    stm32f4xx_hal.o
     0x200000b4   0x08009834   0x00000004   PAD
-    0x200000b8        -       0x00000060   Zero   RW         3019    .bss                c_w.l(libspace.o)
+    0x200000b8        -       0x00000060   Zero   RW         3053    .bss                c_w.l(libspace.o)
     0x20000118        -       0x00000002   Zero   RW           52    .bss.Data_to_client  com.o
     0x2000011a        -       0x00000006   Zero   RW           55    .bss.Data_to_server  com.o
     0x20000120        -       0x00000004   Zero   RW           10    .bss.HAL_GetTick.ticks  main.o
@@ -8274,8 +8315,8 @@ Memory Map of the image
     0x2000889c        -       0x00000004   Zero   RW          136    .bss.tid_ThPot      adc.o
     0x200088a0        -       0x00000004   Zero   RW           97    .bss.tid_ThPrincipal  principal.o
     0x200088a4   0x08009834   0x00000004   PAD
-    0x200088a8        -       0x00000200   Zero   RW         2890    HEAP                startup_stm32f429xx.o
-    0x20008aa8        -       0x00000400   Zero   RW         2889    STACK               startup_stm32f429xx.o
+    0x200088a8        -       0x00000200   Zero   RW         2922    HEAP                startup_stm32f429xx.o
+    0x20008aa8        -       0x00000400   Zero   RW         2921    STACK               startup_stm32f429xx.o
 
 
 ==============================================================================

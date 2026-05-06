@@ -28,6 +28,7 @@
 ".\objects\i2c_stm32f4xx.o"
 ".\objects\spi_stm32f4xx.o"
 ".\objects\usart_stm32f4xx.o"
+".\objects\retarget_io.o"
 ".\objects\stm32f4xx_hal.o"
 ".\objects\stm32f4xx_hal_adc.o"
 ".\objects\stm32f4xx_hal_adc_ex.o"

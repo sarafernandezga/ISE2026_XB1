@@ -1,6 +1,8 @@
 #include "spih.h"
 #include <string.h>
 #include <stdio.h>
+#include "BAJOCONSUMO.h"
+
 /*----------------------------------------------------------------------------
  *      Thread 'ThHum'
  *---------------------------------------------------------------------------*/
@@ -29,6 +31,7 @@ static uint8_t bme280_initialized = 0;
 static uint16_t humedad_raw = 0;
 static float humedad_percent = 0.0f;
 static int32_t temperatura_centi = 0;   // 0.01 ºC
+static BME280_CALIB_t bme_cal;
 
 /* Buffers SPI */
 static uint8_t spi_tx[32];
@@ -72,24 +75,37 @@ int32_t BME280_GetTemperatureCentiDeg(void)
 }
 
 /* Hilo */
-void ThHum (void *argument)
+void ThHum(void *argument)
 {
   int32_t adc_T, adc_H;
+  uint32_t flags;
+
+  (void)argument;
 
   BME280_Init();
 
-  /* Lanzamos una primera medida */
-
   while (1)
   {
-		
-    if (/*hum_msg_rec.cmd == 0 &&*/ bme280_initialized == 1)
+    flags = osThreadFlagsWait(HUM_EVT_SAMPLE,
+                              osFlagsWaitAny,
+                              osWaitForever);
+
+    if ((flags & osFlagsError) != 0U) {
+      continue;
+    }
+
+    LowPower_BusyEnter();
+
+    if (bme280_initialized == 0U) {
+      BME280_Init();
+    }
+
+    if (bme280_initialized == 1U)
     {
       BME280_TriggerMeasurement();
 
-      /* Espera simple hasta fin de conversión */
       while (BME280_ReadStatus() & 0x08) {
-        osDelay(1);
+        osDelay(1U);
       }
 
       BME280_ReadRawData(&adc_T, &adc_H);
@@ -97,21 +113,24 @@ void ThHum (void *argument)
       temperatura_centi = BME280_Compensate_T(adc_T);
       humedad_percent   = BME280_Compensate_H(adc_H);
 
-			//printf("%f\n", humedad_percent);
       if (adc_H < 0) {
-        humedad_raw = 0;
+        humedad_raw = 0U;
       } else if (adc_H > 65535) {
-        humedad_raw = 65535;
+        humedad_raw = 65535U;
       } else {
         humedad_raw = (uint16_t)adc_H;
       }
 
-      osDelay(1000);
-
       hum_msg_send.cmd = humedad_percent;
-      osMessageQueuePut(hum_Queue, &hum_msg_send, 0U, 0U);
-			
     }
+    else {
+      hum_msg_send.cmd = 0.0f;
+    }
+
+    osMessageQueueReset(hum_Queue);
+    osMessageQueuePut(hum_Queue, &hum_msg_send, 0U, 0U);
+
+    LowPower_BusyExit();
   }
 }
 
@@ -361,4 +380,11 @@ float BME280_Compensate_H(int32_t adc_H)
   if (var < 0.0f)   var = 0.0f;
 
   return var;
+}
+
+void BME280_RequestMeasurement(void)
+{
+  if (tid_ThHum != NULL) {
+    osThreadFlagsSet(tid_ThHum, HUM_EVT_SAMPLE);
+  }
 }

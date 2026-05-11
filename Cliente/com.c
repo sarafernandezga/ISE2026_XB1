@@ -1,5 +1,6 @@
 #include "COM.h"
- 
+#include "Principal.h"
+
 osThreadId_t tid_Control_Com_recepcion;
 osThreadId_t tid_Control_Com_transmision;
 
@@ -11,7 +12,6 @@ osMessageQueueId_t cola_salida;
 
 MSGQUEUE_Data_to_server_t Data_to_server;
 MSGQUEUE_Data_to_client_t Data_to_client;
-int ack;
 
 ////////////////////////
 //void ThTestCom_transmitir (void* argument);
@@ -109,8 +109,8 @@ static	char cmd;
 				Data_to_client.ack = bufferDatos[2];
 				osMessageQueuePut(cola_salida, &Data_to_client, NULL, 0U);
 				index=0;
-				//mandamos ack
-				ack = 1;
+				
+				Principal_NotifyEvent(PRINCIPAL_EVT_COM);
 				estado = InitState;
 			}else{
 				if(index >= 3){
@@ -145,10 +145,9 @@ void ThControlComTransmision (void* argument){
 		buffer_datos_entrada[3] = Data_to_server.humedad;
 		buffer_datos_entrada[4] = Data_to_server.peso;
 		buffer_datos_entrada[5] = Data_to_server.Estado;
-		buffer_datos_entrada[6] = ack;
+		buffer_datos_entrada[6] = Data_to_server.ack;
 		buffer_datos_entrada[7] = EOT;		
 		USARTdrv->Send(buffer_datos_entrada, 8); 
-		ack = 0;
 		osThreadFlagsWait(Flag_Recibido2, osFlagsWaitAny, osWaitForever);
 		
 	}

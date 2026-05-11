@@ -4,18 +4,16 @@
 #include <stdint.h>
 #include "cmsis_os2.h"
 
-// --- DEFINICIONES ---
-#define MSGQUEUE_SENS_OBJECTS 16 // Tamaño de la cola de mensajes
+#define MSGQUEUE_SENS_OBJECTS 1
+#define VL_EVT_SAMPLE         0x01U
 
-// --- ESTRUCTURAS DE DATOS ---
 typedef struct {
-    uint16_t Distancia; // Distancia medida en milímetros
+  uint16_t Distancia;
 } MSGQUEUE_SENS_t;
 
-// --- VARIABLES EXTERNAS ---
 extern osMessageQueueId_t VL_Queue;
 
-// --- PROTOTIPOS DE FUNCIONES ---
 int Init_Thsensor(void);
+void SensorDistancia_RequestSample(void);
 
-#endif /* POT_H */
+#endif

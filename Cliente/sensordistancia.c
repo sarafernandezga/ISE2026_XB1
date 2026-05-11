@@ -2,6 +2,7 @@
 #include "Driver_I2C.h"
 #include <stdio.h>
 #include "VL53L0X.h"
+#include "BAJOCONSUMO.h"
 
 // --- VARIABLES DEL RTOS ---
 osThreadId_t tid_Control_sensor;
@@ -53,39 +54,55 @@ int Init_Thsensor(void)
 void ThControlsensor(void *argument)
 {
   MSGQUEUE_SENS_t datos;
+  uint32_t flags;
+  uint8_t sensor_ok = 0U;
 
-	osDelay(200);
-	I2C1_Init();
-  
-	// 1. Configurar la estructura del sensor
-  mi_sensor.address = 0x29;    // Dirección I2C por defecto
-  mi_sensor.io_2v8 = true;     // Modo de voltaje
-  mi_sensor.io_timeout = 500;  // 500ms de timeout
+  (void)argument;
 
-  // 2. Inicializar el sensor
-  if (!VL53L0X_init(&mi_sensor)) {
-      // Si falla, el hilo se queda aquí para no bloquear el sistema
-      while(1) { osDelay(1000); } 
+  osDelay(200U);
+
+  I2C1_Init();
+
+  mi_sensor.address = 0x29;
+  mi_sensor.io_2v8 = true;
+  mi_sensor.io_timeout = 500;
+
+  if (VL53L0X_init(&mi_sensor)) {
+    sensor_ok = 1U;
+  } else {
+    sensor_ok = 0U;
   }
 
-  // Opcional: configurar para largo alcance o mayor velocidad aquí si se desea
-
   while (1) {
-    // 3. Leer la distancia (llamada única o Single Shot)
-    uint16_t mm = VL53L0X_readRangeSingleMillimeters(&mi_sensor);
 
-    // 4. Comprobar errores (8190 o 8191 significa fuera de rango/error)
-    if (!VL53L0X_timeoutOccurred(&mi_sensor) && mm < 8000) {
-        datos.Distancia = mm; 
-    } else {
-        datos.Distancia = 0xFFFF; // Código de error
+    flags = osThreadFlagsWait(VL_EVT_SAMPLE,
+                              osFlagsWaitAny,
+                              osWaitForever);
+
+    if ((flags & osFlagsError) != 0U) {
+      continue;
     }
 
-    // 5. Enviar los datos a la cola sin bloquear
-    osMessageQueuePut(VL_Queue, &datos, 0, 0);
-    
-    // 6. Dormir el hilo para ceder CPU a otras tareas (Ej: mide cada 1 seg)
-    osDelay(1000); 
+    LowPower_BusyEnter();
+
+    if (sensor_ok == 1U) {
+
+      uint16_t mm = VL53L0X_readRangeSingleMillimeters(&mi_sensor);
+
+      if (!VL53L0X_timeoutOccurred(&mi_sensor) && mm < 8000U) {
+        datos.Distancia = mm;
+      } else {
+        datos.Distancia = 0xFFFFU;
+      }
+
+    } else {
+      datos.Distancia = 0xFFFFU;
+    }
+
+    osMessageQueueReset(VL_Queue);
+    osMessageQueuePut(VL_Queue, &datos, 0U, 0U);
+
+    LowPower_BusyExit();
   }
 }
 
@@ -140,4 +157,11 @@ int i2c_read(uint8_t address, uint8_t *data, uint8_t length)
     
     if (flags & 0x02) return -1; // Hubo error de bus
     return 0; // Éxito
+}
+
+void SensorDistancia_RequestSample(void)
+{
+  if (tid_Control_sensor != NULL) {
+    osThreadFlagsSet(tid_Control_sensor, VL_EVT_SAMPLE);
+  }
 }

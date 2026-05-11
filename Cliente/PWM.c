@@ -1,4 +1,5 @@
 #include "PWM.h"
+#include "BAJOCONSUMO.h"
 
 osThreadId_t       tid_ThPWM;
 osMessageQueueId_t pwm_Queue;
@@ -96,6 +97,7 @@ static void Servo_StopPulse(void)
  * 3. Cerrar
  * 4. Esperar nueva orden
  */
+
 static void Servo_Dispensar(void)
 {
   /*
@@ -126,16 +128,12 @@ static void Servo_Dispensar(void)
    */
   Servo_StopPulse();
 }
-
 static void ThPWM(void *argument)
 {
   MSGQUEUE_PWM_t msg;
 
   (void)argument;
 
-  /*
-   * Posición inicial: compuerta cerrada.
-   */
   Servo_SetAngle(SERVO_POS_CERRADO);
   osDelay(SERVO_TIEMPO_MOV_MS);
   Servo_StopPulse();
@@ -143,6 +141,8 @@ static void ThPWM(void *argument)
   while (1) {
 
     if (osMessageQueueGet(pwm_Queue, &msg, NULL, osWaitForever) == osOK) {
+
+      LowPower_BusyEnter();
 
       switch (msg.cmd) {
 
@@ -164,6 +164,8 @@ static void ThPWM(void *argument)
         default:
           break;
       }
+
+      LowPower_BusyExit();
     }
   }
 }

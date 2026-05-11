@@ -63,6 +63,8 @@
 #define RTE_DEVICE_HAL_PWR
 /* Keil::Device:STM32Cube HAL:RCC:1.7.9 */
 #define RTE_DEVICE_HAL_RCC
+/* Keil::Device:STM32Cube HAL:RTC:1.7.9 */
+#define RTE_DEVICE_HAL_RTC
 /* Keil::Device:STM32Cube HAL:SPI:1.7.9 */
 #define RTE_DEVICE_HAL_SPI
 /* Keil::Device:STM32Cube HAL:TIM:1.7.9 */

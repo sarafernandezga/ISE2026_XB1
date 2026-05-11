@@ -41,6 +41,8 @@ static void ThPrincipalServidor(void *argument);
 #define EEPROM_ADDR_CONFIG      0x0000
 #define EEPROM_CONFIG_MAGIC     0xA5
 
+#define ESTADO_SLEEP               0x08U
+
 typedef struct {
   uint8_t magic;
   uint8_t auto_enable;
@@ -277,6 +279,9 @@ const char *PrincipalServidor_GetEstadoTexto(void)
   }
   else if (datos_actuales.estado & ESTADO_ERROR_DIST) {
     snprintf(estado_txt, sizeof(estado_txt), "Error distancia");
+  }
+  else if (datos_actuales.estado & ESTADO_SLEEP) {
+    snprintf(estado_txt, sizeof(estado_txt), "Bajo consumo");
   }
   else {
     snprintf(estado_txt, sizeof(estado_txt), "OK");

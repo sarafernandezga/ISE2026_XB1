@@ -10,7 +10,7 @@ t   setTimeout(periodicUpdateComedero, formUpdate.period);
 t }
 t </script>
 t </head>
-t <body onload="periodicUpdateComedero()">
+t <body bgColor=#f4f8fb leftMargin=0 topMargin=10 marginwidth="0" marginheight="0" onload="periodicUpdateComedero()">
 i pg_header.inc
 t <h2 align="center"><br>Comedero inteligente</h2>
 t <p>
@@ -127,6 +127,4 @@ t  <input type="button" value="Actualizar" onclick="updateMultiple(formUpdate)">
 t </p>
 t </form>
 i pg_footer.inc
-t </body>
-t </html>
 .

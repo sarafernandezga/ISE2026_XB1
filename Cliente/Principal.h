@@ -5,6 +5,9 @@
 #include "cmsis_os2.h"
 #include <stdint.h>
 
-int Init_ThPrincipal(void);
+#define PRINCIPAL_EVT_RTC       0x1U
+#define PRINCIPAL_EVT_COM       0x2U
 
+int Init_ThPrincipal(void);
+void Principal_NotifyEvent(uint32_t event_flags);
 #endif

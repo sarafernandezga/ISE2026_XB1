@@ -228,7 +228,7 @@ void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
 //        strcpy (mensaje_lcd.mensaje, var+5);
 //        osMessageQueuePut(lcd_Queue, &mensaje_lcd, 0U, 0U);
 //        osThreadFlagsSet (TID_Display, 0x01);
-      }      else if (strcmp(var, "dispensar=Dispensar+ahora") == 0) {
+      }      else if (strcmp(var, "dispensar=Dispensar ahora") == 0) {
         PrincipalServidor_DispensarManual();
       }/////COMEDERO
       else if (strcmp(var, "auto=on") == 0) {
@@ -489,7 +489,7 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
 							break;
 
 						case '6':
-							snprintf(tmp, sizeof(tmp), "%u", (unsigned int)datos.consumo);
+							snprintf(tmp, sizeof(tmp), "%u mA", (unsigned int)datos.consumo);
 							len = (uint32_t)sprintf(buf, &env[4], tmp);
 							break;
 

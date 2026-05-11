@@ -49,10 +49,9 @@ void ThControlComRecepcion(void *argument) {
 	Estado_t estado = InitState;
 	uint8_t bufferDatos[BUFFER_SIZE]; // strlen
 	int index=0;
-	cola_salida = osMessageQueueNew(4, sizeof(Data_to_client), NULL); 
+	cola_salida = osMessageQueueNew(4, sizeof(Data_to_server), NULL); 
 	
 	ARM_DRIVER_VERSION version;
-	ARM_USART_CAPABILITIES drv_capabilities;
 	char cmd;
 	
 	#ifdef DEBUG
@@ -68,7 +67,7 @@ void ThControlComRecepcion(void *argument) {
 	
 	USARTdrv->Initialize(Com_Callback);
 	USARTdrv->PowerControl(ARM_POWER_FULL);
-	USARTdrv->Control(ARM_USART_MODE_ASYNCHRONOUS | ARM_USART_DATA_BITS_8 | ARM_USART_PARITY_NONE | ARM_USART_STOP_BITS_1 | ARM_USART_FLOW_CONTROL_NONE, 9600);
+	USARTdrv->Control(ARM_USART_MODE_ASYNCHRONOUS | ARM_USART_DATA_BITS_8 | ARM_USART_PARITY_NONE | ARM_USART_STOP_BITS_1 | ARM_USART_FLOW_CONTROL_NONE, 115200);
 	
 	USARTdrv->Control(ARM_USART_CONTROL_TX, 1);
 	USARTdrv->Control(ARM_USART_CONTROL_RX, 1);
@@ -132,7 +131,6 @@ void ThControlComTransmision (void* argument){
 	char buffer_datos_entrada[BUFFER_SIZE];
 	cola_entrada = osMessageQueueNew(4, sizeof(Data_to_client), NULL);
 	
-	int i=0;
 	while(1){
 		
 		osMessageQueueGet(cola_entrada, &Data_to_client, NULL, osWaitForever);

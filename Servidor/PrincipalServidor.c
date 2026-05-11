@@ -157,7 +157,7 @@ int Init_ThPrincipalServidor(void)
 static void ThPrincipalServidor(void *argument)
 {
   MSGQUEUE_Data_to_server_t rx;
-
+  static uint16_t aux;
   (void)argument;
 
   /*
@@ -179,7 +179,8 @@ static void ThPrincipalServidor(void *argument)
         datos_actuales.humedad     = rx.humedad;
         datos_actuales.distancia   = rx.Distancia;
         datos_actuales.estado      = rx.Estado;
-        datos_actuales.consumo     = rx.consumo;
+        aux = rx.consumo;
+        datos_actuales.consumo     = aux*10;
         datos_actuales.peso        = rx.peso;
         datos_actuales.ack_cliente = rx.ack;
         datos_actuales.timestamp_ms = osKernelGetTickCount();

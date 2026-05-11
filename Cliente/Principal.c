@@ -153,12 +153,17 @@ static void ThPrincipal(void *argument)
       while (osMessageQueueGet(cola_salida, &trama_rx, NULL, 0U) == osOK) {
 
         if (trama_rx.dispensar != 0U) {
-          pwm_msg.duty = PWM_DISPENSAR_DUTY;
 
-          if (pwm_Queue != NULL) {
-            osMessageQueuePut(pwm_Queue, &pwm_msg, 0U, 0U);
-          }
-        }
+					MSGQUEUE_PWM_t pwm_msg;
+
+					pwm_msg.cmd = PWM_CMD_DISPENSAR;
+					pwm_msg.angle = 0U;
+					pwm_msg.hold_ms = 0U;
+
+					if (pwm_Queue != NULL) {
+						osMessageQueuePut(pwm_Queue, &pwm_msg, 0U, 0U);
+					}
+				}
       }
     }
 

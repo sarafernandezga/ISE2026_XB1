@@ -1,5 +1,4 @@
-#ifndef __adc_H
-#define __adc_H
+#ifndef __ADC_H
 
 #include "stm32f4xx_hal.h"
 #include "cmsis_os2.h"
@@ -7,19 +6,33 @@
 #include <string.h>
 #include <stdint.h>
 
-#define POT_MIN_PESO     0.0f
-#define POT_MAX_PESO    1000.0f
-#define POT_ADC_MAX   4095.0f
+#define RESOLUTION_12B 4096U
+#define VREF 3.3f
 
-#define MSGQUEUE_POT_OBJECTS  1
+#define MSGQUEUE_ADC_OBJECTS  1
+
+#define ADC_RESOLUTION_12B   4095.0f
+#define ADC_VREF             3.3f
+#define LOAD_VOLTAGE         9.0f
+
+#define SHUNT_RESISTOR       0.1f
+#define CURRENT_GAIN         60.0f
+
+#define WEIGHT_GAIN          660.0f
+#define MAX_WEIGHT_G         1000.0f
+
 
 typedef struct {
-  uint16_t peso;   /* peso  */
-	uint16_t consumo; // potencia
+  uint8_t consumo;
+  float peso;
 } MSGQUEUE_POT_t;
 
 extern osMessageQueueId_t pot_Queue;         
 
-int Init_ThPot (void); 
+int Init_ThPot (void);
 
-#endif /* __POTENCIOMETRO_H */
+	void ADC1_pins_F429ZI_config(void);
+	int ADC_Init_Single_Conversion(ADC_HandleTypeDef *, ADC_TypeDef  *);
+	float ADC_getVoltage(ADC_HandleTypeDef * , uint32_t );
+#endif
+

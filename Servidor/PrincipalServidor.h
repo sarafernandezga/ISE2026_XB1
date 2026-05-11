@@ -9,7 +9,7 @@ typedef struct {
   uint8_t humedad;       /* % */
   uint8_t distancia;     /* cm */
   uint8_t estado;
-  uint8_t consumo;
+  uint16_t consumo;      /* mA */
   uint8_t peso;          /* decenas de gramos */
   uint8_t ack_cliente;
   uint32_t timestamp_ms;

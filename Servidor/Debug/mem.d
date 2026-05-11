@@ -1,0 +1,9 @@
+.\debug\mem.o: mem.c
+.\debug\mem.o: mem.h
+.\debug\mem.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\RTOS2\Include\cmsis_os2.h
+.\debug\mem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\debug\mem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\debug\mem.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Driver\Include\Driver_I2C.h
+.\debug\mem.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Driver\Include\Driver_Common.h
+.\debug\mem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\debug\mem.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

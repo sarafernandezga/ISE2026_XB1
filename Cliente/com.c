@@ -60,7 +60,7 @@ void ThControlComRecepcion(void *argument) {
 	
 	ARM_DRIVER_VERSION version;
 	ARM_USART_CAPABILITIES drv_capabilities;
-	char cmd;
+static	char cmd;
 	
 	#ifdef DEBUG
 	version = USARTdrv->GetVersion();
@@ -75,7 +75,7 @@ void ThControlComRecepcion(void *argument) {
 	
 	USARTdrv->Initialize(Com_Callback);
 	USARTdrv->PowerControl(ARM_POWER_FULL);
-	USARTdrv->Control(ARM_USART_MODE_ASYNCHRONOUS | ARM_USART_DATA_BITS_8 | ARM_USART_PARITY_NONE | ARM_USART_STOP_BITS_1 | ARM_USART_FLOW_CONTROL_NONE, 9600);
+	USARTdrv->Control(ARM_USART_MODE_ASYNCHRONOUS | ARM_USART_DATA_BITS_8 | ARM_USART_PARITY_NONE | ARM_USART_STOP_BITS_1 | ARM_USART_FLOW_CONTROL_NONE, 115200);
 	
 	USARTdrv->Control(ARM_USART_CONTROL_TX, 1);
 	USARTdrv->Control(ARM_USART_CONTROL_RX, 1);

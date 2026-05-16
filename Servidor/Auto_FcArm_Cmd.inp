@@ -20,5 +20,6 @@ pabb.gif,
 rtc.cgi,
 rtc.cgx,
 comedero.cgi,
-comedero.cgx 
+comedero.cgx,
+log.cgi 
 TO Web.c RTE NOPRINT ROOT(Web)

@@ -297,9 +297,6 @@ static void ThPrincipal(void *argument)
         }
       }
 
-      if (distancia_actual == DISTANCIA_ERROR_VALUE) {
-        estado |= ESTADO_ERROR_DIST;
-      }
 
       /*--------------------------------------------
        * 6. Recoger humedad

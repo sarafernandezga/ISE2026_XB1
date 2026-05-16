@@ -37,7 +37,7 @@
  * abierto = 90 grados
  */
 #define SERVO_POS_CERRADO       0U
-#define SERVO_POS_ABIERTO       90U
+#define SERVO_POS_ABIERTO       180U
 
 #define SERVO_TIEMPO_MOV_MS     800U
 #define SERVO_TIEMPO_ABIERTO_MS 5000U

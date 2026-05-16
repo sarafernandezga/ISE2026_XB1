@@ -122,8 +122,11 @@ t  </td>
 t </tr>
 t </table>
 t <p align=center>
-t  <input type="submit" value="Guardar configuracion">
+t  <input type="submit" name="guardar" value="Guardar configuracion">
 t  <input type="button" value="Actualizar" onclick="updateMultiple(formUpdate)">
+t </p>
+t <p align=center>
+t  <a href="log.cgi">Ver log de eventos</a>
 t </p>
 t </form>
 i pg_footer.inc

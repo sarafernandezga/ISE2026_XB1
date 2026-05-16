@@ -139,13 +139,24 @@ static int ParseHoraMinuto(const char *str, uint8_t *h, uint8_t *m)
 //            - 5 = the same as 4, but with more XML data to follow.
 void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
   char var[40],passw[12];
-  
+	uint8_t auto_on = 0U;
+	uint8_t guardar_config = 0U;
+	uint8_t borrar_logs = 0U;
+	uint8_t dispensar_manual = 0U;
+	
+	uint8_t h1_new = 0U;
+	uint8_t m1_new = 0U;
+	uint8_t h2_new = 0U;
+	uint8_t m2_new = 0U;
+
+	uint8_t h1_ok = 0U;
+	uint8_t h2_ok = 0U;
+	
   if (code != 0) {
     // Ignore all other codes
     return;
   }
 	
-	PrincipalServidor_SetAuto(0U);
 
   P2 = 0;
 //  LEDrun = true;
@@ -228,28 +239,51 @@ void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
 //        strcpy (mensaje_lcd.mensaje, var+5);
 //        osMessageQueuePut(lcd_Queue, &mensaje_lcd, 0U, 0U);
 //        osThreadFlagsSet (TID_Display, 0x01);
-      }      else if (strcmp(var, "dispensar=Dispensar ahora") == 0) {
-        PrincipalServidor_DispensarManual();
+            }
+      else if (strncmp(var, "dispensar=", 10) == 0) {
+        dispensar_manual = 1U;
       }/////COMEDERO
       else if (strcmp(var, "auto=on") == 0) {
-        PrincipalServidor_SetAuto(1U);
+        auto_on = 1U;
+      }
+      else if (strncmp(var, "guardar=", 8) == 0) {
+        guardar_config = 1U;
+      }
+      else if (strncmp(var, "borrar_logs=", 12) == 0) {
+        borrar_logs = 1U;
       }
       else if (strncmp(var, "hora1=", 6) == 0) {
-        uint8_t h, m;
-        if (ParseHoraMinuto(var + 6, &h, &m)) {
-          PrincipalServidor_SetHora1(h, m);
+        if (ParseHoraMinuto(var + 6, &h1_new, &m1_new)) {
+          h1_ok = 1U;
         }
       }
       else if (strncmp(var, "hora2=", 6) == 0) {
-        uint8_t h, m;
-        if (ParseHoraMinuto(var + 6, &h, &m)) {
-          PrincipalServidor_SetHora2(h, m);
+        if (ParseHoraMinuto(var + 6, &h2_new, &m2_new)) {
+          h2_ok = 1U;
         }
       }
     }
   } while (data);
-   //LED_SetOut (P2);
-  
+	
+	if (guardar_config != 0U) {
+    PrincipalServidor_SetAuto(auto_on);
+
+    if (h1_ok != 0U) {
+      PrincipalServidor_SetHora1(h1_new, m1_new);
+    }
+
+    if (h2_ok != 0U) {
+      PrincipalServidor_SetHora2(h2_new, m2_new);
+    }
+  }
+
+  if (dispensar_manual != 0U) {
+    PrincipalServidor_DispensarManual();
+  }
+
+  if (borrar_logs != 0U) {
+    PrincipalServidor_LogClear();
+  }
 }
 
 // Generate dynamic web data from a script line.
@@ -450,6 +484,7 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
 		case 'z'://///////////COMEDERO///////////////
 				{
 					SERVIDOR_DATOS_t datos;
+					SERVIDOR_LOG_t log;
 					uint8_t h1, m1, h2, m2;
 					char tmp[64];
 
@@ -480,10 +515,10 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
 							break;
 
 						case '5':
-							if (datos.distancia == 255U) {
-								snprintf(tmp, sizeof(tmp), "Error sensor");
+							if (datos.distancia == 255U || datos.distancia <=2) {
+								snprintf(tmp, sizeof(tmp), "Deposito con comida ");
 							} else {
-								snprintf(tmp, sizeof(tmp), "%u cm", (unsigned int)datos.distancia);
+								snprintf(tmp, sizeof(tmp), "Deposito vacio (%u cm)", (unsigned int)datos.distancia);
 							}
 							len = (uint32_t)sprintf(buf, &env[4], tmp);
 							break;
@@ -516,6 +551,64 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
 							snprintf(tmp, sizeof(tmp), "%02u:%02u", h2, m2);
 							len = (uint32_t)sprintf(buf, &env[4], tmp);
 							break;
+						case 'c':
+              {
+                uint8_t count;
+                uint8_t idx_log;
+
+                count = PrincipalServidor_LogGetCount();
+                idx_log = MYBUF(pcgi)->idx;
+
+                if (count == 0U) {
+                  len = (uint32_t)sprintf(buf,
+                    "<tr align=\"center\">"
+                    "<td colspan=\"4\">No hay eventos guardados</td>"
+                    "</tr>\r\n");
+
+                  MYBUF(pcgi)->idx = 0U;
+                }
+                else if ((idx_log < count) &&
+                         (PrincipalServidor_LogGetByIndex(idx_log, &log) == 0)) {
+
+                  len = (uint32_t)sprintf(buf,
+                    "<tr align=\"center\">"
+                    "<td>%02u/%02u/20%02u</td>"
+                    "<td>%02u:%02u:%02u</td>"
+                    "<td>%s</td>"
+                    "<td>%s</td>"
+                    "</tr>\r\n",
+                    (unsigned int)log.day,
+                    (unsigned int)log.month,
+                    (unsigned int)log.year,
+                    (unsigned int)log.hour,
+                    (unsigned int)log.minute,
+                    (unsigned int)log.second,
+                    PrincipalServidor_LogEventoTexto(log.evento),
+                    PrincipalServidor_LogModoTexto(log.modo));
+
+                  MYBUF(pcgi)->idx = idx_log + 1U;
+
+                  if (MYBUF(pcgi)->idx < count) {
+                    len |= (1U << 31);
+                  }
+                  else {
+                    MYBUF(pcgi)->idx = 0U;
+                  }
+                }
+                else {
+                  MYBUF(pcgi)->idx = 0U;
+                }
+
+               break;
+              }
+
+            case 'd':
+              snprintf(tmp, sizeof(tmp), "%u/%u eventos guardados",
+                       (unsigned int)PrincipalServidor_LogGetCount(),
+                       (unsigned int)SERVIDOR_LOG_MAX);
+
+              len = (uint32_t)sprintf(buf, &env[4], tmp);
+              break;
 					}
 					break;
 				}
